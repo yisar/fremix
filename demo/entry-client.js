@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch, useHistory } from 'react-router-dom';
 import { PremixProvider } from '../src';
 import { useFetchRouteData } from '../src/client';
-import matchRoute from '../src/utils/matchRoute';
+import matchRoute from '../src/match-route';
 import App from './App';
 import { routes } from './routes';
 
