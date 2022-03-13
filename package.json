@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/yisar/fremix#readme",
   "dependencies": {
+    "ohmyfetch": "^0.4.15",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "wouter": "^2.8.0-alpha.2"

@@ -1,6 +1,10 @@
 import express from 'express';
 import { renderApp } from './src/render-app';
 import handleRequest from './demo/entry-server'
+import { $fetch } from 'ohmyfetch'
+
+global.fetch = $fetch
+
 
 const app = express();
 

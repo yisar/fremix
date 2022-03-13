@@ -470,7 +470,7 @@ var require_react_development = __commonJS({
             }
           }
         }
-        var ReactElement = function(type, key, ref, self2, source, owner, props) {
+        var ReactElement = function(type, key, ref, self, source, owner, props) {
           var element = {
             $$typeof: REACT_ELEMENT_TYPE,
             type,
@@ -491,7 +491,7 @@ var require_react_development = __commonJS({
               configurable: false,
               enumerable: false,
               writable: false,
-              value: self2
+              value: self
             });
             Object.defineProperty(element, "_source", {
               configurable: false,
@@ -506,12 +506,12 @@ var require_react_development = __commonJS({
           }
           return element;
         };
-        function createElement(type, config, children) {
+        function createElement2(type, config, children) {
           var propName;
           var props = {};
           var key = null;
           var ref = null;
-          var self2 = null;
+          var self = null;
           var source = null;
           if (config != null) {
             if (hasValidRef(config)) {
@@ -523,7 +523,7 @@ var require_react_development = __commonJS({
             if (hasValidKey(config)) {
               key = "" + config.key;
             }
-            self2 = config.__self === void 0 ? null : config.__self;
+            self = config.__self === void 0 ? null : config.__self;
             source = config.__source === void 0 ? null : config.__source;
             for (propName in config) {
               if (hasOwnProperty.call(config, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
@@ -565,13 +565,13 @@ var require_react_development = __commonJS({
               }
             }
           }
-          return ReactElement(type, key, ref, self2, source, ReactCurrentOwner.current, props);
+          return ReactElement(type, key, ref, self, source, ReactCurrentOwner.current, props);
         }
         function cloneAndReplaceKey(oldElement, newKey) {
           var newElement = ReactElement(oldElement.type, newKey, oldElement.ref, oldElement._self, oldElement._source, oldElement._owner, oldElement.props);
           return newElement;
         }
-        function cloneElement(element, config, children) {
+        function cloneElement2(element, config, children) {
           if (!!(element === null || element === void 0)) {
             {
               throw Error("React.cloneElement(...): The argument must be a React element, but you passed " + element + ".");
@@ -581,7 +581,7 @@ var require_react_development = __commonJS({
           var props = _assign({}, element.props);
           var key = element.key;
           var ref = element.ref;
-          var self2 = element._self;
+          var self = element._self;
           var source = element._source;
           var owner = element._owner;
           if (config != null) {
@@ -616,9 +616,9 @@ var require_react_development = __commonJS({
             }
             props.children = childArray;
           }
-          return ReactElement(element.type, key, ref, self2, source, owner, props);
+          return ReactElement(element.type, key, ref, self, source, owner, props);
         }
-        function isValidElement(object) {
+        function isValidElement2(object) {
           return typeof object === "object" && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
         }
         var SEPARATOR = ".";
@@ -680,7 +680,7 @@ var require_react_development = __commonJS({
                 return c;
               });
             } else if (mappedChild != null) {
-              if (isValidElement(mappedChild)) {
+              if (isValidElement2(mappedChild)) {
                 mappedChild = cloneAndReplaceKey(mappedChild, escapedPrefix + (mappedChild.key && (!_child || _child.key !== mappedChild.key) ? escapeUserProvidedKey("" + mappedChild.key) + "/" : "") + childKey);
               }
               array.push(mappedChild);
@@ -757,14 +757,14 @@ var require_react_development = __commonJS({
           }) || [];
         }
         function onlyChild(children) {
-          if (!isValidElement(children)) {
+          if (!isValidElement2(children)) {
             {
               throw Error("React.Children.only expected to receive a single React element child.");
             }
           }
           return children;
         }
-        function createContext2(defaultValue, calculateChangedBits) {
+        function createContext3(defaultValue, calculateChangedBits) {
           if (calculateChangedBits === void 0) {
             calculateChangedBits = null;
           } else {
@@ -1035,7 +1035,7 @@ var require_react_development = __commonJS({
           }
           return dispatcher;
         }
-        function useContext2(Context, unstable_observedBits) {
+        function useContext3(Context, unstable_observedBits) {
           var dispatcher = resolveDispatcher();
           {
             if (unstable_observedBits !== void 0) {
@@ -1052,7 +1052,7 @@ var require_react_development = __commonJS({
           }
           return dispatcher.useContext(Context, unstable_observedBits);
         }
-        function useState2(initialState) {
+        function useState3(initialState) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useState(initialState);
         }
@@ -1060,19 +1060,19 @@ var require_react_development = __commonJS({
           var dispatcher = resolveDispatcher();
           return dispatcher.useReducer(reducer, initialArg, init2);
         }
-        function useRef2(initialValue) {
+        function useRef3(initialValue) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useRef(initialValue);
         }
-        function useEffect3(create, deps) {
+        function useEffect4(create, deps) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useEffect(create, deps);
         }
-        function useLayoutEffect(create, deps) {
+        function useLayoutEffect2(create, deps) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useLayoutEffect(create, deps);
         }
-        function useCallback2(callback, deps) {
+        function useCallback3(callback, deps) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useCallback(callback, deps);
         }
@@ -1350,7 +1350,7 @@ var require_react_development = __commonJS({
             }
           }
         }
-        function checkPropTypes(typeSpecs, values, location, componentName, element) {
+        function checkPropTypes(typeSpecs, values, location2, componentName, element) {
           {
             var has = Function.call.bind(Object.prototype.hasOwnProperty);
             for (var typeSpecName in typeSpecs) {
@@ -1358,23 +1358,23 @@ var require_react_development = __commonJS({
                 var error$1 = void 0;
                 try {
                   if (typeof typeSpecs[typeSpecName] !== "function") {
-                    var err = Error((componentName || "React class") + ": " + location + " type `" + typeSpecName + "` is invalid; it must be a function, usually from the `prop-types` package, but received `" + typeof typeSpecs[typeSpecName] + "`.This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.");
+                    var err = Error((componentName || "React class") + ": " + location2 + " type `" + typeSpecName + "` is invalid; it must be a function, usually from the `prop-types` package, but received `" + typeof typeSpecs[typeSpecName] + "`.This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.");
                     err.name = "Invariant Violation";
                     throw err;
                   }
-                  error$1 = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, "SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED");
+                  error$1 = typeSpecs[typeSpecName](values, typeSpecName, componentName, location2, null, "SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED");
                 } catch (ex) {
                   error$1 = ex;
                 }
                 if (error$1 && !(error$1 instanceof Error)) {
                   setCurrentlyValidatingElement(element);
-                  error("%s: type specification of %s `%s` is invalid; the type checker function must return `null` or an `Error` but returned a %s. You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument).", componentName || "React class", location, typeSpecName, typeof error$1);
+                  error("%s: type specification of %s `%s` is invalid; the type checker function must return `null` or an `Error` but returned a %s. You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument).", componentName || "React class", location2, typeSpecName, typeof error$1);
                   setCurrentlyValidatingElement(null);
                 }
                 if (error$1 instanceof Error && !(error$1.message in loggedTypeFailures)) {
                   loggedTypeFailures[error$1.message] = true;
                   setCurrentlyValidatingElement(element);
-                  error("Failed %s type: %s", location, error$1.message);
+                  error("Failed %s type: %s", location2, error$1.message);
                   setCurrentlyValidatingElement(null);
                 }
               }
@@ -1457,11 +1457,11 @@ var require_react_development = __commonJS({
           if (Array.isArray(node)) {
             for (var i = 0; i < node.length; i++) {
               var child = node[i];
-              if (isValidElement(child)) {
+              if (isValidElement2(child)) {
                 validateExplicitKey(child, parentType);
               }
             }
-          } else if (isValidElement(node)) {
+          } else if (isValidElement2(node)) {
             if (node._store) {
               node._store.validated = true;
             }
@@ -1472,7 +1472,7 @@ var require_react_development = __commonJS({
                 var iterator = iteratorFn.call(node);
                 var step;
                 while (!(step = iterator.next()).done) {
-                  if (isValidElement(step.value)) {
+                  if (isValidElement2(step.value)) {
                     validateExplicitKey(step.value, parentType);
                   }
                 }
@@ -1554,7 +1554,7 @@ var require_react_development = __commonJS({
               error("React.createElement: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s", typeString, info);
             }
           }
-          var element = createElement.apply(this, arguments);
+          var element = createElement2.apply(this, arguments);
           if (element == null) {
             return element;
           }
@@ -1593,7 +1593,7 @@ var require_react_development = __commonJS({
           return validatedFactory;
         }
         function cloneElementWithValidation(element, props, children) {
-          var newElement = cloneElement.apply(this, arguments);
+          var newElement = cloneElement2.apply(this, arguments);
           for (var i = 2; i < arguments.length; i++) {
             validateChildKeys(arguments[i], newElement.type);
           }
@@ -1623,24 +1623,24 @@ var require_react_development = __commonJS({
         exports.PureComponent = PureComponent;
         exports.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactSharedInternals;
         exports.cloneElement = cloneElement$1;
-        exports.createContext = createContext2;
+        exports.createContext = createContext3;
         exports.createElement = createElement$1;
         exports.createFactory = createFactory;
         exports.createRef = createRef;
         exports.forwardRef = forwardRef;
-        exports.isValidElement = isValidElement;
+        exports.isValidElement = isValidElement2;
         exports.lazy = lazy;
         exports.memo = memo;
-        exports.useCallback = useCallback2;
-        exports.useContext = useContext2;
+        exports.useCallback = useCallback3;
+        exports.useContext = useContext3;
         exports.useDebugValue = useDebugValue;
-        exports.useEffect = useEffect3;
+        exports.useEffect = useEffect4;
         exports.useImperativeHandle = useImperativeHandle;
-        exports.useLayoutEffect = useLayoutEffect;
+        exports.useLayoutEffect = useLayoutEffect2;
         exports.useMemo = useMemo;
         exports.useReducer = useReducer;
-        exports.useRef = useRef2;
-        exports.useState = useState2;
+        exports.useRef = useRef3;
+        exports.useState = useState3;
         exports.version = ReactVersion;
       })();
     }
@@ -2510,7 +2510,7 @@ var require_react_dom_development = __commonJS({
         var HostPortal = 4;
         var HostComponent = 5;
         var HostText = 6;
-        var Fragment = 7;
+        var Fragment2 = 7;
         var Mode = 8;
         var ContextConsumer = 9;
         var ContextProvider = 10;
@@ -3712,7 +3712,7 @@ var require_react_dom_development = __commonJS({
         }
         var didWarnSelectedSetOnOption = false;
         var didWarnInvalidChild = false;
-        function flattenChildren(children) {
+        function flattenChildren2(children) {
           var content = "";
           React3.Children.forEach(children, function(child) {
             if (child == null) {
@@ -3756,7 +3756,7 @@ var require_react_dom_development = __commonJS({
           var hostProps = _assign({
             children: void 0
           }, props);
-          var content = flattenChildren(props.children);
+          var content = flattenChildren2(props.children);
           if (content) {
             hostProps.children = content;
           }
@@ -6656,7 +6656,7 @@ var require_react_dom_development = __commonJS({
               break;
             case ContinuousEvent:
             default:
-              listenerWrapper = dispatchEvent;
+              listenerWrapper = dispatchEvent2;
               break;
           }
           return listenerWrapper.bind(null, domEventName, eventSystemFlags, targetContainer);
@@ -6665,14 +6665,14 @@ var require_react_dom_development = __commonJS({
           {
             flushDiscreteUpdatesIfNeeded(nativeEvent.timeStamp);
           }
-          discreteUpdates(dispatchEvent, domEventName, eventSystemFlags, container, nativeEvent);
+          discreteUpdates(dispatchEvent2, domEventName, eventSystemFlags, container, nativeEvent);
         }
         function dispatchUserBlockingUpdate(domEventName, eventSystemFlags, container, nativeEvent) {
           {
-            runWithPriority(UserBlockingPriority$1, dispatchEvent.bind(null, domEventName, eventSystemFlags, container, nativeEvent));
+            runWithPriority(UserBlockingPriority$1, dispatchEvent2.bind(null, domEventName, eventSystemFlags, container, nativeEvent));
           }
         }
-        function dispatchEvent(domEventName, eventSystemFlags, targetContainer, nativeEvent) {
+        function dispatchEvent2(domEventName, eventSystemFlags, targetContainer, nativeEvent) {
           if (!_enabled) {
             return;
           }
@@ -8479,7 +8479,7 @@ var require_react_dom_development = __commonJS({
             }
           }
         }
-        function createElement(type, props, rootContainerElement, parentNamespace) {
+        function createElement2(type, props, rootContainerElement, parentNamespace) {
           var isCustomComponentTag;
           var ownerDocument = getOwnerDocumentFromRootContainer(rootContainerElement);
           var domElement;
@@ -9356,7 +9356,7 @@ var require_react_dom_development = __commonJS({
             }
             parentNamespace = hostContextDev.namespace;
           }
-          var domElement = createElement(type, props, rootContainerInstance, parentNamespace);
+          var domElement = createElement2(type, props, rootContainerInstance, parentNamespace);
           precacheFiberNode(internalInstanceHandle, domElement);
           updateFiberProps(domElement, props);
           return domElement;
@@ -9746,7 +9746,7 @@ var require_react_dom_development = __commonJS({
             }
           }
         }
-        function checkPropTypes(typeSpecs, values, location, componentName, element) {
+        function checkPropTypes(typeSpecs, values, location2, componentName, element) {
           {
             var has2 = Function.call.bind(Object.prototype.hasOwnProperty);
             for (var typeSpecName in typeSpecs) {
@@ -9754,23 +9754,23 @@ var require_react_dom_development = __commonJS({
                 var error$1 = void 0;
                 try {
                   if (typeof typeSpecs[typeSpecName] !== "function") {
-                    var err = Error((componentName || "React class") + ": " + location + " type `" + typeSpecName + "` is invalid; it must be a function, usually from the `prop-types` package, but received `" + typeof typeSpecs[typeSpecName] + "`.This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.");
+                    var err = Error((componentName || "React class") + ": " + location2 + " type `" + typeSpecName + "` is invalid; it must be a function, usually from the `prop-types` package, but received `" + typeof typeSpecs[typeSpecName] + "`.This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.");
                     err.name = "Invariant Violation";
                     throw err;
                   }
-                  error$1 = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, "SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED");
+                  error$1 = typeSpecs[typeSpecName](values, typeSpecName, componentName, location2, null, "SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED");
                 } catch (ex) {
                   error$1 = ex;
                 }
                 if (error$1 && !(error$1 instanceof Error)) {
                   setCurrentlyValidatingElement(element);
-                  error("%s: type specification of %s `%s` is invalid; the type checker function must return `null` or an `Error` but returned a %s. You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument).", componentName || "React class", location, typeSpecName, typeof error$1);
+                  error("%s: type specification of %s `%s` is invalid; the type checker function must return `null` or an `Error` but returned a %s. You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument).", componentName || "React class", location2, typeSpecName, typeof error$1);
                   setCurrentlyValidatingElement(null);
                 }
                 if (error$1 instanceof Error && !(error$1.message in loggedTypeFailures)) {
                   loggedTypeFailures[error$1.message] = true;
                   setCurrentlyValidatingElement(element);
-                  error("Failed %s type: %s", location, error$1.message);
+                  error("Failed %s type: %s", location2, error$1.message);
                   setCurrentlyValidatingElement(null);
                 }
               }
@@ -11694,7 +11694,7 @@ var require_react_dom_development = __commonJS({
             }
           }
           function updateFragment2(returnFiber, current2, fragment, lanes, key) {
-            if (current2 === null || current2.tag !== Fragment) {
+            if (current2 === null || current2.tag !== Fragment2) {
               var created = createFiberFromFragment(fragment, returnFiber.mode, lanes, key);
               created.return = returnFiber;
               return created;
@@ -12062,7 +12062,7 @@ var require_react_dom_development = __commonJS({
             while (child !== null) {
               if (child.key === key) {
                 switch (child.tag) {
-                  case Fragment: {
+                  case Fragment2: {
                     if (element.type === REACT_FRAGMENT_TYPE) {
                       deleteRemainingChildren(returnFiber, child.sibling);
                       var existing = useFiber(child, element.props.children);
@@ -15666,7 +15666,7 @@ var require_react_dom_development = __commonJS({
               var _resolvedProps2 = workInProgress2.elementType === type ? _unresolvedProps2 : resolveDefaultProps(type, _unresolvedProps2);
               return updateForwardRef(current2, workInProgress2, type, _resolvedProps2, renderLanes2);
             }
-            case Fragment:
+            case Fragment2:
               return updateFragment(current2, workInProgress2, renderLanes2);
             case Mode:
               return updateMode(current2, workInProgress2, renderLanes2);
@@ -15833,7 +15833,7 @@ var require_react_dom_development = __commonJS({
             case SimpleMemoComponent:
             case FunctionComponent:
             case ForwardRef:
-            case Fragment:
+            case Fragment2:
             case Mode:
             case Profiler:
             case ContextConsumer:
@@ -19537,7 +19537,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           return fiber;
         }
         function createFiberFromFragment(elements, mode, lanes, key) {
-          var fiber = createFiber(Fragment, elements, key, mode);
+          var fiber = createFiber(Fragment2, elements, key, mode);
           fiber.lanes = lanes;
           return fiber;
         }
@@ -20442,1703 +20442,6 @@ var require_react_dom = __commonJS({
   }
 });
 
-// node_modules/history/umd/history.development.js
-var require_history_development = __commonJS({
-  "node_modules/history/umd/history.development.js"(exports, module) {
-    init_react_shim();
-    (function(global, factory) {
-      typeof exports === "object" && typeof module !== "undefined" ? factory(exports) : typeof define === "function" && define.amd ? define(["exports"], factory) : (global = typeof globalThis !== "undefined" ? globalThis : global || self, factory(global.HistoryLibrary = {}));
-    })(exports, function(exports2) {
-      "use strict";
-      function _extends() {
-        _extends = Object.assign || function(target) {
-          for (var i = 1; i < arguments.length; i++) {
-            var source = arguments[i];
-            for (var key in source) {
-              if (Object.prototype.hasOwnProperty.call(source, key)) {
-                target[key] = source[key];
-              }
-            }
-          }
-          return target;
-        };
-        return _extends.apply(this, arguments);
-      }
-      exports2.Action = void 0;
-      (function(Action) {
-        Action["Pop"] = "POP";
-        Action["Push"] = "PUSH";
-        Action["Replace"] = "REPLACE";
-      })(exports2.Action || (exports2.Action = {}));
-      var readOnly = function(obj) {
-        return Object.freeze(obj);
-      };
-      function warning(cond, message) {
-        if (!cond) {
-          if (typeof console !== "undefined")
-            console.warn(message);
-          try {
-            throw new Error(message);
-          } catch (e) {
-          }
-        }
-      }
-      var BeforeUnloadEventType = "beforeunload";
-      var HashChangeEventType = "hashchange";
-      var PopStateEventType = "popstate";
-      function createBrowserHistory(options) {
-        if (options === void 0) {
-          options = {};
-        }
-        var _options = options, _options$window = _options.window, window2 = _options$window === void 0 ? document.defaultView : _options$window;
-        var globalHistory = window2.history;
-        function getIndexAndLocation() {
-          var _window$location = window2.location, pathname = _window$location.pathname, search = _window$location.search, hash = _window$location.hash;
-          var state = globalHistory.state || {};
-          return [state.idx, readOnly({
-            pathname,
-            search,
-            hash,
-            state: state.usr || null,
-            key: state.key || "default"
-          })];
-        }
-        var blockedPopTx = null;
-        function handlePop() {
-          if (blockedPopTx) {
-            blockers.call(blockedPopTx);
-            blockedPopTx = null;
-          } else {
-            var nextAction = exports2.Action.Pop;
-            var _getIndexAndLocation = getIndexAndLocation(), nextIndex = _getIndexAndLocation[0], nextLocation = _getIndexAndLocation[1];
-            if (blockers.length) {
-              if (nextIndex != null) {
-                var delta = index - nextIndex;
-                if (delta) {
-                  blockedPopTx = {
-                    action: nextAction,
-                    location: nextLocation,
-                    retry: function retry() {
-                      go(delta * -1);
-                    }
-                  };
-                  go(delta);
-                }
-              } else {
-                warning(false, "You are trying to block a POP navigation to a location that was not created by the history library. The block will fail silently in production, but in general you should do all navigation with the history library (instead of using window.history.pushState directly) to avoid this situation.");
-              }
-            } else {
-              applyTx(nextAction);
-            }
-          }
-        }
-        window2.addEventListener(PopStateEventType, handlePop);
-        var action = exports2.Action.Pop;
-        var _getIndexAndLocation2 = getIndexAndLocation(), index = _getIndexAndLocation2[0], location = _getIndexAndLocation2[1];
-        var listeners = createEvents();
-        var blockers = createEvents();
-        if (index == null) {
-          index = 0;
-          globalHistory.replaceState(_extends({}, globalHistory.state, {
-            idx: index
-          }), "");
-        }
-        function createHref(to) {
-          return typeof to === "string" ? to : createPath(to);
-        }
-        function getNextLocation(to, state) {
-          if (state === void 0) {
-            state = null;
-          }
-          return readOnly(_extends({
-            pathname: location.pathname,
-            hash: "",
-            search: ""
-          }, typeof to === "string" ? parsePath(to) : to, {
-            state,
-            key: createKey()
-          }));
-        }
-        function getHistoryStateAndUrl(nextLocation, index2) {
-          return [{
-            usr: nextLocation.state,
-            key: nextLocation.key,
-            idx: index2
-          }, createHref(nextLocation)];
-        }
-        function allowTx(action2, location2, retry) {
-          return !blockers.length || (blockers.call({
-            action: action2,
-            location: location2,
-            retry
-          }), false);
-        }
-        function applyTx(nextAction) {
-          action = nextAction;
-          var _getIndexAndLocation3 = getIndexAndLocation();
-          index = _getIndexAndLocation3[0];
-          location = _getIndexAndLocation3[1];
-          listeners.call({
-            action,
-            location
-          });
-        }
-        function push(to, state) {
-          var nextAction = exports2.Action.Push;
-          var nextLocation = getNextLocation(to, state);
-          function retry() {
-            push(to, state);
-          }
-          if (allowTx(nextAction, nextLocation, retry)) {
-            var _getHistoryStateAndUr = getHistoryStateAndUrl(nextLocation, index + 1), historyState = _getHistoryStateAndUr[0], url = _getHistoryStateAndUr[1];
-            try {
-              globalHistory.pushState(historyState, "", url);
-            } catch (error) {
-              window2.location.assign(url);
-            }
-            applyTx(nextAction);
-          }
-        }
-        function replace(to, state) {
-          var nextAction = exports2.Action.Replace;
-          var nextLocation = getNextLocation(to, state);
-          function retry() {
-            replace(to, state);
-          }
-          if (allowTx(nextAction, nextLocation, retry)) {
-            var _getHistoryStateAndUr2 = getHistoryStateAndUrl(nextLocation, index), historyState = _getHistoryStateAndUr2[0], url = _getHistoryStateAndUr2[1];
-            globalHistory.replaceState(historyState, "", url);
-            applyTx(nextAction);
-          }
-        }
-        function go(delta) {
-          globalHistory.go(delta);
-        }
-        var history = {
-          get action() {
-            return action;
-          },
-          get location() {
-            return location;
-          },
-          createHref,
-          push,
-          replace,
-          go,
-          back: function back() {
-            go(-1);
-          },
-          forward: function forward() {
-            go(1);
-          },
-          listen: function listen(listener) {
-            return listeners.push(listener);
-          },
-          block: function block(blocker) {
-            var unblock = blockers.push(blocker);
-            if (blockers.length === 1) {
-              window2.addEventListener(BeforeUnloadEventType, promptBeforeUnload);
-            }
-            return function() {
-              unblock();
-              if (!blockers.length) {
-                window2.removeEventListener(BeforeUnloadEventType, promptBeforeUnload);
-              }
-            };
-          }
-        };
-        return history;
-      }
-      function createHashHistory(options) {
-        if (options === void 0) {
-          options = {};
-        }
-        var _options2 = options, _options2$window = _options2.window, window2 = _options2$window === void 0 ? document.defaultView : _options2$window;
-        var globalHistory = window2.history;
-        function getIndexAndLocation() {
-          var _parsePath = parsePath(window2.location.hash.substr(1)), _parsePath$pathname = _parsePath.pathname, pathname = _parsePath$pathname === void 0 ? "/" : _parsePath$pathname, _parsePath$search = _parsePath.search, search = _parsePath$search === void 0 ? "" : _parsePath$search, _parsePath$hash = _parsePath.hash, hash = _parsePath$hash === void 0 ? "" : _parsePath$hash;
-          var state = globalHistory.state || {};
-          return [state.idx, readOnly({
-            pathname,
-            search,
-            hash,
-            state: state.usr || null,
-            key: state.key || "default"
-          })];
-        }
-        var blockedPopTx = null;
-        function handlePop() {
-          if (blockedPopTx) {
-            blockers.call(blockedPopTx);
-            blockedPopTx = null;
-          } else {
-            var nextAction = exports2.Action.Pop;
-            var _getIndexAndLocation4 = getIndexAndLocation(), nextIndex = _getIndexAndLocation4[0], nextLocation = _getIndexAndLocation4[1];
-            if (blockers.length) {
-              if (nextIndex != null) {
-                var delta = index - nextIndex;
-                if (delta) {
-                  blockedPopTx = {
-                    action: nextAction,
-                    location: nextLocation,
-                    retry: function retry() {
-                      go(delta * -1);
-                    }
-                  };
-                  go(delta);
-                }
-              } else {
-                warning(false, "You are trying to block a POP navigation to a location that was not created by the history library. The block will fail silently in production, but in general you should do all navigation with the history library (instead of using window.history.pushState directly) to avoid this situation.");
-              }
-            } else {
-              applyTx(nextAction);
-            }
-          }
-        }
-        window2.addEventListener(PopStateEventType, handlePop);
-        window2.addEventListener(HashChangeEventType, function() {
-          var _getIndexAndLocation5 = getIndexAndLocation(), nextLocation = _getIndexAndLocation5[1];
-          if (createPath(nextLocation) !== createPath(location)) {
-            handlePop();
-          }
-        });
-        var action = exports2.Action.Pop;
-        var _getIndexAndLocation6 = getIndexAndLocation(), index = _getIndexAndLocation6[0], location = _getIndexAndLocation6[1];
-        var listeners = createEvents();
-        var blockers = createEvents();
-        if (index == null) {
-          index = 0;
-          globalHistory.replaceState(_extends({}, globalHistory.state, {
-            idx: index
-          }), "");
-        }
-        function getBaseHref() {
-          var base = document.querySelector("base");
-          var href = "";
-          if (base && base.getAttribute("href")) {
-            var url = window2.location.href;
-            var hashIndex = url.indexOf("#");
-            href = hashIndex === -1 ? url : url.slice(0, hashIndex);
-          }
-          return href;
-        }
-        function createHref(to) {
-          return getBaseHref() + "#" + (typeof to === "string" ? to : createPath(to));
-        }
-        function getNextLocation(to, state) {
-          if (state === void 0) {
-            state = null;
-          }
-          return readOnly(_extends({
-            pathname: location.pathname,
-            hash: "",
-            search: ""
-          }, typeof to === "string" ? parsePath(to) : to, {
-            state,
-            key: createKey()
-          }));
-        }
-        function getHistoryStateAndUrl(nextLocation, index2) {
-          return [{
-            usr: nextLocation.state,
-            key: nextLocation.key,
-            idx: index2
-          }, createHref(nextLocation)];
-        }
-        function allowTx(action2, location2, retry) {
-          return !blockers.length || (blockers.call({
-            action: action2,
-            location: location2,
-            retry
-          }), false);
-        }
-        function applyTx(nextAction) {
-          action = nextAction;
-          var _getIndexAndLocation7 = getIndexAndLocation();
-          index = _getIndexAndLocation7[0];
-          location = _getIndexAndLocation7[1];
-          listeners.call({
-            action,
-            location
-          });
-        }
-        function push(to, state) {
-          var nextAction = exports2.Action.Push;
-          var nextLocation = getNextLocation(to, state);
-          function retry() {
-            push(to, state);
-          }
-          warning(nextLocation.pathname.charAt(0) === "/", "Relative pathnames are not supported in hash history.push(" + JSON.stringify(to) + ")");
-          if (allowTx(nextAction, nextLocation, retry)) {
-            var _getHistoryStateAndUr3 = getHistoryStateAndUrl(nextLocation, index + 1), historyState = _getHistoryStateAndUr3[0], url = _getHistoryStateAndUr3[1];
-            try {
-              globalHistory.pushState(historyState, "", url);
-            } catch (error) {
-              window2.location.assign(url);
-            }
-            applyTx(nextAction);
-          }
-        }
-        function replace(to, state) {
-          var nextAction = exports2.Action.Replace;
-          var nextLocation = getNextLocation(to, state);
-          function retry() {
-            replace(to, state);
-          }
-          warning(nextLocation.pathname.charAt(0) === "/", "Relative pathnames are not supported in hash history.replace(" + JSON.stringify(to) + ")");
-          if (allowTx(nextAction, nextLocation, retry)) {
-            var _getHistoryStateAndUr4 = getHistoryStateAndUrl(nextLocation, index), historyState = _getHistoryStateAndUr4[0], url = _getHistoryStateAndUr4[1];
-            globalHistory.replaceState(historyState, "", url);
-            applyTx(nextAction);
-          }
-        }
-        function go(delta) {
-          globalHistory.go(delta);
-        }
-        var history = {
-          get action() {
-            return action;
-          },
-          get location() {
-            return location;
-          },
-          createHref,
-          push,
-          replace,
-          go,
-          back: function back() {
-            go(-1);
-          },
-          forward: function forward() {
-            go(1);
-          },
-          listen: function listen(listener) {
-            return listeners.push(listener);
-          },
-          block: function block(blocker) {
-            var unblock = blockers.push(blocker);
-            if (blockers.length === 1) {
-              window2.addEventListener(BeforeUnloadEventType, promptBeforeUnload);
-            }
-            return function() {
-              unblock();
-              if (!blockers.length) {
-                window2.removeEventListener(BeforeUnloadEventType, promptBeforeUnload);
-              }
-            };
-          }
-        };
-        return history;
-      }
-      function createMemoryHistory(options) {
-        if (options === void 0) {
-          options = {};
-        }
-        var _options3 = options, _options3$initialEntr = _options3.initialEntries, initialEntries = _options3$initialEntr === void 0 ? ["/"] : _options3$initialEntr, initialIndex = _options3.initialIndex;
-        var entries = initialEntries.map(function(entry) {
-          var location2 = readOnly(_extends({
-            pathname: "/",
-            search: "",
-            hash: "",
-            state: null,
-            key: createKey()
-          }, typeof entry === "string" ? parsePath(entry) : entry));
-          warning(location2.pathname.charAt(0) === "/", "Relative pathnames are not supported in createMemoryHistory({ initialEntries }) (invalid entry: " + JSON.stringify(entry) + ")");
-          return location2;
-        });
-        var index = clamp(initialIndex == null ? entries.length - 1 : initialIndex, 0, entries.length - 1);
-        var action = exports2.Action.Pop;
-        var location = entries[index];
-        var listeners = createEvents();
-        var blockers = createEvents();
-        function createHref(to) {
-          return typeof to === "string" ? to : createPath(to);
-        }
-        function getNextLocation(to, state) {
-          if (state === void 0) {
-            state = null;
-          }
-          return readOnly(_extends({
-            pathname: location.pathname,
-            search: "",
-            hash: ""
-          }, typeof to === "string" ? parsePath(to) : to, {
-            state,
-            key: createKey()
-          }));
-        }
-        function allowTx(action2, location2, retry) {
-          return !blockers.length || (blockers.call({
-            action: action2,
-            location: location2,
-            retry
-          }), false);
-        }
-        function applyTx(nextAction, nextLocation) {
-          action = nextAction;
-          location = nextLocation;
-          listeners.call({
-            action,
-            location
-          });
-        }
-        function push(to, state) {
-          var nextAction = exports2.Action.Push;
-          var nextLocation = getNextLocation(to, state);
-          function retry() {
-            push(to, state);
-          }
-          warning(location.pathname.charAt(0) === "/", "Relative pathnames are not supported in memory history.push(" + JSON.stringify(to) + ")");
-          if (allowTx(nextAction, nextLocation, retry)) {
-            index += 1;
-            entries.splice(index, entries.length, nextLocation);
-            applyTx(nextAction, nextLocation);
-          }
-        }
-        function replace(to, state) {
-          var nextAction = exports2.Action.Replace;
-          var nextLocation = getNextLocation(to, state);
-          function retry() {
-            replace(to, state);
-          }
-          warning(location.pathname.charAt(0) === "/", "Relative pathnames are not supported in memory history.replace(" + JSON.stringify(to) + ")");
-          if (allowTx(nextAction, nextLocation, retry)) {
-            entries[index] = nextLocation;
-            applyTx(nextAction, nextLocation);
-          }
-        }
-        function go(delta) {
-          var nextIndex = clamp(index + delta, 0, entries.length - 1);
-          var nextAction = exports2.Action.Pop;
-          var nextLocation = entries[nextIndex];
-          function retry() {
-            go(delta);
-          }
-          if (allowTx(nextAction, nextLocation, retry)) {
-            index = nextIndex;
-            applyTx(nextAction, nextLocation);
-          }
-        }
-        var history = {
-          get index() {
-            return index;
-          },
-          get action() {
-            return action;
-          },
-          get location() {
-            return location;
-          },
-          createHref,
-          push,
-          replace,
-          go,
-          back: function back() {
-            go(-1);
-          },
-          forward: function forward() {
-            go(1);
-          },
-          listen: function listen(listener) {
-            return listeners.push(listener);
-          },
-          block: function block(blocker) {
-            return blockers.push(blocker);
-          }
-        };
-        return history;
-      }
-      function clamp(n, lowerBound, upperBound) {
-        return Math.min(Math.max(n, lowerBound), upperBound);
-      }
-      function promptBeforeUnload(event) {
-        event.preventDefault();
-        event.returnValue = "";
-      }
-      function createEvents() {
-        var handlers = [];
-        return {
-          get length() {
-            return handlers.length;
-          },
-          push: function push(fn) {
-            handlers.push(fn);
-            return function() {
-              handlers = handlers.filter(function(handler) {
-                return handler !== fn;
-              });
-            };
-          },
-          call: function call(arg) {
-            handlers.forEach(function(fn) {
-              return fn && fn(arg);
-            });
-          }
-        };
-      }
-      function createKey() {
-        return Math.random().toString(36).substr(2, 8);
-      }
-      function createPath(_ref) {
-        var _ref$pathname = _ref.pathname, pathname = _ref$pathname === void 0 ? "/" : _ref$pathname, _ref$search = _ref.search, search = _ref$search === void 0 ? "" : _ref$search, _ref$hash = _ref.hash, hash = _ref$hash === void 0 ? "" : _ref$hash;
-        if (search && search !== "?")
-          pathname += search.charAt(0) === "?" ? search : "?" + search;
-        if (hash && hash !== "#")
-          pathname += hash.charAt(0) === "#" ? hash : "#" + hash;
-        return pathname;
-      }
-      function parsePath(path) {
-        var parsedPath = {};
-        if (path) {
-          var hashIndex = path.indexOf("#");
-          if (hashIndex >= 0) {
-            parsedPath.hash = path.substr(hashIndex);
-            path = path.substr(0, hashIndex);
-          }
-          var searchIndex = path.indexOf("?");
-          if (searchIndex >= 0) {
-            parsedPath.search = path.substr(searchIndex);
-            path = path.substr(0, searchIndex);
-          }
-          if (path) {
-            parsedPath.pathname = path;
-          }
-        }
-        return parsedPath;
-      }
-      exports2.createBrowserHistory = createBrowserHistory;
-      exports2.createHashHistory = createHashHistory;
-      exports2.createMemoryHistory = createMemoryHistory;
-      exports2.createPath = createPath;
-      exports2.parsePath = parsePath;
-      Object.defineProperty(exports2, "__esModule", { value: true });
-    });
-  }
-});
-
-// node_modules/history/main.js
-var require_main = __commonJS({
-  "node_modules/history/main.js"(exports, module) {
-    "use strict";
-    init_react_shim();
-    if (false) {
-      module.exports = null;
-    } else {
-      module.exports = require_history_development();
-    }
-  }
-});
-
-// node_modules/react-router/umd/react-router.development.js
-var require_react_router_development = __commonJS({
-  "node_modules/react-router/umd/react-router.development.js"(exports, module) {
-    init_react_shim();
-    (function(global, factory) {
-      typeof exports === "object" && typeof module !== "undefined" ? factory(exports, require_react(), require_main()) : typeof define === "function" && define.amd ? define(["exports", "react", "history"], factory) : (global = global || self, factory(global.ReactRouter = {}, global.React, global.HistoryLibrary));
-    })(exports, function(exports2, React3, history) {
-      "use strict";
-      function invariant(cond, message) {
-        if (!cond)
-          throw new Error(message);
-      }
-      function warning(cond, message) {
-        if (!cond) {
-          if (typeof console !== "undefined")
-            console.warn(message);
-          try {
-            throw new Error(message);
-          } catch (e) {
-          }
-        }
-      }
-      const alreadyWarned = {};
-      function warningOnce(key, cond, message) {
-        if (!cond && !alreadyWarned[key]) {
-          alreadyWarned[key] = true;
-          warning(false, message);
-        }
-      }
-      const NavigationContext = /* @__PURE__ */ React3.createContext(null);
-      {
-        NavigationContext.displayName = "Navigation";
-      }
-      const LocationContext = /* @__PURE__ */ React3.createContext(null);
-      {
-        LocationContext.displayName = "Location";
-      }
-      const RouteContext = /* @__PURE__ */ React3.createContext({
-        outlet: null,
-        matches: []
-      });
-      {
-        RouteContext.displayName = "Route";
-      }
-      function MemoryRouter(_ref) {
-        let {
-          basename,
-          children,
-          initialEntries,
-          initialIndex
-        } = _ref;
-        let historyRef = React3.useRef();
-        if (historyRef.current == null) {
-          historyRef.current = history.createMemoryHistory({
-            initialEntries,
-            initialIndex
-          });
-        }
-        let history$1 = historyRef.current;
-        let [state, setState] = React3.useState({
-          action: history$1.action,
-          location: history$1.location
-        });
-        React3.useLayoutEffect(() => history$1.listen(setState), [history$1]);
-        return /* @__PURE__ */ React3.createElement(Router, {
-          basename,
-          children,
-          location: state.location,
-          navigationType: state.action,
-          navigator: history$1
-        });
-      }
-      function Navigate(_ref2) {
-        let {
-          to,
-          replace,
-          state
-        } = _ref2;
-        !useInRouterContext() ? invariant(false, "<Navigate> may be used only in the context of a <Router> component.") : void 0;
-        warning(!React3.useContext(NavigationContext).static, "<Navigate> must not be used on the initial render in a <StaticRouter>. This is a no-op, but you should modify your code so the <Navigate> is only ever rendered in response to some user interaction or state change.");
-        let navigate = useNavigate();
-        React3.useEffect(() => {
-          navigate(to, {
-            replace,
-            state
-          });
-        });
-        return null;
-      }
-      function Outlet(props) {
-        return useOutlet(props.context);
-      }
-      function Route2(_props) {
-        invariant(false, "A <Route> is only ever to be used as the child of <Routes> element, never rendered directly. Please wrap your <Route> in a <Routes>.");
-      }
-      function Router(_ref3) {
-        let {
-          basename: basenameProp = "/",
-          children = null,
-          location: locationProp,
-          navigationType = history.Action.Pop,
-          navigator: navigator2,
-          static: staticProp = false
-        } = _ref3;
-        !!useInRouterContext() ? invariant(false, "You cannot render a <Router> inside another <Router>. You should never have more than one in your app.") : void 0;
-        let basename = normalizePathname(basenameProp);
-        let navigationContext = React3.useMemo(() => ({
-          basename,
-          navigator: navigator2,
-          static: staticProp
-        }), [basename, navigator2, staticProp]);
-        if (typeof locationProp === "string") {
-          locationProp = history.parsePath(locationProp);
-        }
-        let {
-          pathname = "/",
-          search = "",
-          hash = "",
-          state = null,
-          key = "default"
-        } = locationProp;
-        let location = React3.useMemo(() => {
-          let trailingPathname = stripBasename(pathname, basename);
-          if (trailingPathname == null) {
-            return null;
-          }
-          return {
-            pathname: trailingPathname,
-            search,
-            hash,
-            state,
-            key
-          };
-        }, [basename, pathname, search, hash, state, key]);
-        warning(location != null, '<Router basename="' + basename + '"> is not able to match the URL ' + ('"' + pathname + search + hash + '" because it does not start with the ') + "basename, so the <Router> won't render anything.");
-        if (location == null) {
-          return null;
-        }
-        return /* @__PURE__ */ React3.createElement(NavigationContext.Provider, {
-          value: navigationContext
-        }, /* @__PURE__ */ React3.createElement(LocationContext.Provider, {
-          children,
-          value: {
-            location,
-            navigationType
-          }
-        }));
-      }
-      function Routes(_ref4) {
-        let {
-          children,
-          location
-        } = _ref4;
-        return useRoutes(createRoutesFromChildren(children), location);
-      }
-      function useHref(to) {
-        !useInRouterContext() ? invariant(false, "useHref() may be used only in the context of a <Router> component.") : void 0;
-        let {
-          basename,
-          navigator: navigator2
-        } = React3.useContext(NavigationContext);
-        let {
-          hash,
-          pathname,
-          search
-        } = useResolvedPath(to);
-        let joinedPathname = pathname;
-        if (basename !== "/") {
-          let toPathname = getToPathname(to);
-          let endsWithSlash = toPathname != null && toPathname.endsWith("/");
-          joinedPathname = pathname === "/" ? basename + (endsWithSlash ? "/" : "") : joinPaths([basename, pathname]);
-        }
-        return navigator2.createHref({
-          pathname: joinedPathname,
-          search,
-          hash
-        });
-      }
-      function useInRouterContext() {
-        return React3.useContext(LocationContext) != null;
-      }
-      function useLocation() {
-        !useInRouterContext() ? invariant(false, "useLocation() may be used only in the context of a <Router> component.") : void 0;
-        return React3.useContext(LocationContext).location;
-      }
-      function useNavigationType() {
-        return React3.useContext(LocationContext).navigationType;
-      }
-      function useMatch(pattern) {
-        !useInRouterContext() ? invariant(false, "useMatch() may be used only in the context of a <Router> component.") : void 0;
-        let {
-          pathname
-        } = useLocation();
-        return React3.useMemo(() => matchPath(pattern, pathname), [pathname, pattern]);
-      }
-      function useNavigate() {
-        !useInRouterContext() ? invariant(false, "useNavigate() may be used only in the context of a <Router> component.") : void 0;
-        let {
-          basename,
-          navigator: navigator2
-        } = React3.useContext(NavigationContext);
-        let {
-          matches
-        } = React3.useContext(RouteContext);
-        let {
-          pathname: locationPathname
-        } = useLocation();
-        let routePathnamesJson = JSON.stringify(matches.map((match) => match.pathnameBase));
-        let activeRef = React3.useRef(false);
-        React3.useEffect(() => {
-          activeRef.current = true;
-        });
-        let navigate = React3.useCallback(function(to, options) {
-          if (options === void 0) {
-            options = {};
-          }
-          warning(activeRef.current, "You should call navigate() in a React.useEffect(), not when your component is first rendered.");
-          if (!activeRef.current)
-            return;
-          if (typeof to === "number") {
-            navigator2.go(to);
-            return;
-          }
-          let path = resolveTo(to, JSON.parse(routePathnamesJson), locationPathname);
-          if (basename !== "/") {
-            path.pathname = joinPaths([basename, path.pathname]);
-          }
-          (!!options.replace ? navigator2.replace : navigator2.push)(path, options.state);
-        }, [basename, navigator2, routePathnamesJson, locationPathname]);
-        return navigate;
-      }
-      const OutletContext = /* @__PURE__ */ React3.createContext(null);
-      function useOutletContext() {
-        return React3.useContext(OutletContext);
-      }
-      function useOutlet(context) {
-        let outlet = React3.useContext(RouteContext).outlet;
-        if (outlet) {
-          return /* @__PURE__ */ React3.createElement(OutletContext.Provider, {
-            value: context
-          }, outlet);
-        }
-        return outlet;
-      }
-      function useParams() {
-        let {
-          matches
-        } = React3.useContext(RouteContext);
-        let routeMatch = matches[matches.length - 1];
-        return routeMatch ? routeMatch.params : {};
-      }
-      function useResolvedPath(to) {
-        let {
-          matches
-        } = React3.useContext(RouteContext);
-        let {
-          pathname: locationPathname
-        } = useLocation();
-        let routePathnamesJson = JSON.stringify(matches.map((match) => match.pathnameBase));
-        return React3.useMemo(() => resolveTo(to, JSON.parse(routePathnamesJson), locationPathname), [to, routePathnamesJson, locationPathname]);
-      }
-      function useRoutes(routes2, locationArg) {
-        !useInRouterContext() ? invariant(false, "useRoutes() may be used only in the context of a <Router> component.") : void 0;
-        let {
-          matches: parentMatches
-        } = React3.useContext(RouteContext);
-        let routeMatch = parentMatches[parentMatches.length - 1];
-        let parentParams = routeMatch ? routeMatch.params : {};
-        let parentPathname = routeMatch ? routeMatch.pathname : "/";
-        let parentPathnameBase = routeMatch ? routeMatch.pathnameBase : "/";
-        let parentRoute = routeMatch && routeMatch.route;
-        {
-          let parentPath = parentRoute && parentRoute.path || "";
-          warningOnce(parentPathname, !parentRoute || parentPath.endsWith("*"), "You rendered descendant <Routes> (or called `useRoutes()`) at " + ('"' + parentPathname + '" (under <Route path="' + parentPath + '">) but the ') + `parent route path has no trailing "*". This means if you navigate deeper, the parent won't match anymore and therefore the child routes will never render.
-
-` + ('Please change the parent <Route path="' + parentPath + '"> to <Route ') + ('path="' + (parentPath === "/" ? "*" : parentPath + "/*") + '">.'));
-        }
-        let locationFromContext = useLocation();
-        let location;
-        if (locationArg) {
-          var _parsedLocationArg$pa;
-          let parsedLocationArg = typeof locationArg === "string" ? history.parsePath(locationArg) : locationArg;
-          !(parentPathnameBase === "/" || ((_parsedLocationArg$pa = parsedLocationArg.pathname) == null ? void 0 : _parsedLocationArg$pa.startsWith(parentPathnameBase))) ? invariant(false, "When overriding the location using `<Routes location>` or `useRoutes(routes, location)`, the location pathname must begin with the portion of the URL pathname that was " + ('matched by all parent routes. The current pathname base is "' + parentPathnameBase + '" ') + ('but pathname "' + parsedLocationArg.pathname + '" was given in the `location` prop.')) : void 0;
-          location = parsedLocationArg;
-        } else {
-          location = locationFromContext;
-        }
-        let pathname = location.pathname || "/";
-        let remainingPathname = parentPathnameBase === "/" ? pathname : pathname.slice(parentPathnameBase.length) || "/";
-        let matches = matchRoutes(routes2, {
-          pathname: remainingPathname
-        });
-        {
-          warning(parentRoute || matches != null, 'No routes matched location "' + location.pathname + location.search + location.hash + '" ');
-          warning(matches == null || matches[matches.length - 1].route.element !== void 0, 'Matched leaf route at location "' + location.pathname + location.search + location.hash + '" does not have an element. This means it will render an <Outlet /> with a null value by default resulting in an "empty" page.');
-        }
-        return _renderMatches(matches && matches.map((match) => Object.assign({}, match, {
-          params: Object.assign({}, parentParams, match.params),
-          pathname: joinPaths([parentPathnameBase, match.pathname]),
-          pathnameBase: match.pathnameBase === "/" ? parentPathnameBase : joinPaths([parentPathnameBase, match.pathnameBase])
-        })), parentMatches);
-      }
-      function createRoutesFromChildren(children) {
-        let routes2 = [];
-        React3.Children.forEach(children, (element) => {
-          if (!/* @__PURE__ */ React3.isValidElement(element)) {
-            return;
-          }
-          if (element.type === React3.Fragment) {
-            routes2.push.apply(routes2, createRoutesFromChildren(element.props.children));
-            return;
-          }
-          !(element.type === Route2) ? invariant(false, "[" + (typeof element.type === "string" ? element.type : element.type.name) + "] is not a <Route> component. All component children of <Routes> must be a <Route> or <React.Fragment>") : void 0;
-          let route = {
-            caseSensitive: element.props.caseSensitive,
-            element: element.props.element,
-            index: element.props.index,
-            path: element.props.path
-          };
-          if (element.props.children) {
-            route.children = createRoutesFromChildren(element.props.children);
-          }
-          routes2.push(route);
-        });
-        return routes2;
-      }
-      function generatePath(path, params) {
-        if (params === void 0) {
-          params = {};
-        }
-        return path.replace(/:(\w+)/g, (_, key) => {
-          !(params[key] != null) ? invariant(false, 'Missing ":' + key + '" param') : void 0;
-          return params[key];
-        }).replace(/\/*\*$/, (_) => params["*"] == null ? "" : params["*"].replace(/^\/*/, "/"));
-      }
-      function matchRoutes(routes2, locationArg, basename) {
-        if (basename === void 0) {
-          basename = "/";
-        }
-        let location = typeof locationArg === "string" ? history.parsePath(locationArg) : locationArg;
-        let pathname = stripBasename(location.pathname || "/", basename);
-        if (pathname == null) {
-          return null;
-        }
-        let branches = flattenRoutes(routes2);
-        rankRouteBranches(branches);
-        let matches = null;
-        for (let i = 0; matches == null && i < branches.length; ++i) {
-          matches = matchRouteBranch(branches[i], pathname);
-        }
-        return matches;
-      }
-      function flattenRoutes(routes2, branches, parentsMeta, parentPath) {
-        if (branches === void 0) {
-          branches = [];
-        }
-        if (parentsMeta === void 0) {
-          parentsMeta = [];
-        }
-        if (parentPath === void 0) {
-          parentPath = "";
-        }
-        routes2.forEach((route, index) => {
-          let meta = {
-            relativePath: route.path || "",
-            caseSensitive: route.caseSensitive === true,
-            childrenIndex: index,
-            route
-          };
-          if (meta.relativePath.startsWith("/")) {
-            !meta.relativePath.startsWith(parentPath) ? invariant(false, 'Absolute route path "' + meta.relativePath + '" nested under path ' + ('"' + parentPath + '" is not valid. An absolute child route path ') + "must start with the combined path of all its parent routes.") : void 0;
-            meta.relativePath = meta.relativePath.slice(parentPath.length);
-          }
-          let path = joinPaths([parentPath, meta.relativePath]);
-          let routesMeta = parentsMeta.concat(meta);
-          if (route.children && route.children.length > 0) {
-            !(route.index !== true) ? invariant(false, "Index routes must not have child routes. Please remove " + ('all child routes from route path "' + path + '".')) : void 0;
-            flattenRoutes(route.children, branches, routesMeta, path);
-          }
-          if (route.path == null && !route.index) {
-            return;
-          }
-          branches.push({
-            path,
-            score: computeScore(path, route.index),
-            routesMeta
-          });
-        });
-        return branches;
-      }
-      function rankRouteBranches(branches) {
-        branches.sort((a, b) => a.score !== b.score ? b.score - a.score : compareIndexes(a.routesMeta.map((meta) => meta.childrenIndex), b.routesMeta.map((meta) => meta.childrenIndex)));
-      }
-      const paramRe = /^:\w+$/;
-      const dynamicSegmentValue = 3;
-      const indexRouteValue = 2;
-      const emptySegmentValue = 1;
-      const staticSegmentValue = 10;
-      const splatPenalty = -2;
-      const isSplat = (s) => s === "*";
-      function computeScore(path, index) {
-        let segments = path.split("/");
-        let initialScore = segments.length;
-        if (segments.some(isSplat)) {
-          initialScore += splatPenalty;
-        }
-        if (index) {
-          initialScore += indexRouteValue;
-        }
-        return segments.filter((s) => !isSplat(s)).reduce((score, segment) => score + (paramRe.test(segment) ? dynamicSegmentValue : segment === "" ? emptySegmentValue : staticSegmentValue), initialScore);
-      }
-      function compareIndexes(a, b) {
-        let siblings = a.length === b.length && a.slice(0, -1).every((n, i) => n === b[i]);
-        return siblings ? a[a.length - 1] - b[b.length - 1] : 0;
-      }
-      function matchRouteBranch(branch, pathname) {
-        let {
-          routesMeta
-        } = branch;
-        let matchedParams = {};
-        let matchedPathname = "/";
-        let matches = [];
-        for (let i = 0; i < routesMeta.length; ++i) {
-          let meta = routesMeta[i];
-          let end = i === routesMeta.length - 1;
-          let remainingPathname = matchedPathname === "/" ? pathname : pathname.slice(matchedPathname.length) || "/";
-          let match = matchPath({
-            path: meta.relativePath,
-            caseSensitive: meta.caseSensitive,
-            end
-          }, remainingPathname);
-          if (!match)
-            return null;
-          Object.assign(matchedParams, match.params);
-          let route = meta.route;
-          matches.push({
-            params: matchedParams,
-            pathname: joinPaths([matchedPathname, match.pathname]),
-            pathnameBase: normalizePathname(joinPaths([matchedPathname, match.pathnameBase])),
-            route
-          });
-          if (match.pathnameBase !== "/") {
-            matchedPathname = joinPaths([matchedPathname, match.pathnameBase]);
-          }
-        }
-        return matches;
-      }
-      function renderMatches(matches) {
-        return _renderMatches(matches);
-      }
-      function _renderMatches(matches, parentMatches) {
-        if (parentMatches === void 0) {
-          parentMatches = [];
-        }
-        if (matches == null)
-          return null;
-        return matches.reduceRight((outlet, match, index) => {
-          return /* @__PURE__ */ React3.createElement(RouteContext.Provider, {
-            children: match.route.element !== void 0 ? match.route.element : outlet,
-            value: {
-              outlet,
-              matches: parentMatches.concat(matches.slice(0, index + 1))
-            }
-          });
-        }, null);
-      }
-      function matchPath(pattern, pathname) {
-        if (typeof pattern === "string") {
-          pattern = {
-            path: pattern,
-            caseSensitive: false,
-            end: true
-          };
-        }
-        let [matcher, paramNames] = compilePath(pattern.path, pattern.caseSensitive, pattern.end);
-        let match = pathname.match(matcher);
-        if (!match)
-          return null;
-        let matchedPathname = match[0];
-        let pathnameBase = matchedPathname.replace(/(.)\/+$/, "$1");
-        let captureGroups = match.slice(1);
-        let params = paramNames.reduce((memo, paramName, index) => {
-          if (paramName === "*") {
-            let splatValue = captureGroups[index] || "";
-            pathnameBase = matchedPathname.slice(0, matchedPathname.length - splatValue.length).replace(/(.)\/+$/, "$1");
-          }
-          memo[paramName] = safelyDecodeURIComponent(captureGroups[index] || "", paramName);
-          return memo;
-        }, {});
-        return {
-          params,
-          pathname: matchedPathname,
-          pathnameBase,
-          pattern
-        };
-      }
-      function compilePath(path, caseSensitive, end) {
-        if (caseSensitive === void 0) {
-          caseSensitive = false;
-        }
-        if (end === void 0) {
-          end = true;
-        }
-        warning(path === "*" || !path.endsWith("*") || path.endsWith("/*"), 'Route path "' + path + '" will be treated as if it were ' + ('"' + path.replace(/\*$/, "/*") + '" because the `*` character must ') + "always follow a `/` in the pattern. To get rid of this warning, " + ('please change the route path to "' + path.replace(/\*$/, "/*") + '".'));
-        let paramNames = [];
-        let regexpSource = "^" + path.replace(/\/*\*?$/, "").replace(/^\/*/, "/").replace(/[\\.*+^$?{}|()[\]]/g, "\\$&").replace(/:(\w+)/g, (_, paramName) => {
-          paramNames.push(paramName);
-          return "([^\\/]+)";
-        });
-        if (path.endsWith("*")) {
-          paramNames.push("*");
-          regexpSource += path === "*" || path === "/*" ? "(.*)$" : "(?:\\/(.+)|\\/*)$";
-        } else {
-          regexpSource += end ? "\\/*$" : "(?:(?=[.~-]|%[0-9A-F]{2})|\\b|\\/|$)";
-        }
-        let matcher = new RegExp(regexpSource, caseSensitive ? void 0 : "i");
-        return [matcher, paramNames];
-      }
-      function safelyDecodeURIComponent(value, paramName) {
-        try {
-          return decodeURIComponent(value);
-        } catch (error) {
-          warning(false, 'The value for the URL param "' + paramName + '" will not be decoded because' + (' the string "' + value + '" is a malformed URL segment. This is probably') + (" due to a bad percent encoding (" + error + ")."));
-          return value;
-        }
-      }
-      function resolvePath(to, fromPathname) {
-        if (fromPathname === void 0) {
-          fromPathname = "/";
-        }
-        let {
-          pathname: toPathname,
-          search = "",
-          hash = ""
-        } = typeof to === "string" ? history.parsePath(to) : to;
-        let pathname = toPathname ? toPathname.startsWith("/") ? toPathname : resolvePathname(toPathname, fromPathname) : fromPathname;
-        return {
-          pathname,
-          search: normalizeSearch(search),
-          hash: normalizeHash(hash)
-        };
-      }
-      function resolvePathname(relativePath, fromPathname) {
-        let segments = fromPathname.replace(/\/+$/, "").split("/");
-        let relativeSegments = relativePath.split("/");
-        relativeSegments.forEach((segment) => {
-          if (segment === "..") {
-            if (segments.length > 1)
-              segments.pop();
-          } else if (segment !== ".") {
-            segments.push(segment);
-          }
-        });
-        return segments.length > 1 ? segments.join("/") : "/";
-      }
-      function resolveTo(toArg, routePathnames, locationPathname) {
-        let to = typeof toArg === "string" ? history.parsePath(toArg) : toArg;
-        let toPathname = toArg === "" || to.pathname === "" ? "/" : to.pathname;
-        let from;
-        if (toPathname == null) {
-          from = locationPathname;
-        } else {
-          let routePathnameIndex = routePathnames.length - 1;
-          if (toPathname.startsWith("..")) {
-            let toSegments = toPathname.split("/");
-            while (toSegments[0] === "..") {
-              toSegments.shift();
-              routePathnameIndex -= 1;
-            }
-            to.pathname = toSegments.join("/");
-          }
-          from = routePathnameIndex >= 0 ? routePathnames[routePathnameIndex] : "/";
-        }
-        let path = resolvePath(to, from);
-        if (toPathname && toPathname !== "/" && toPathname.endsWith("/") && !path.pathname.endsWith("/")) {
-          path.pathname += "/";
-        }
-        return path;
-      }
-      function getToPathname(to) {
-        return to === "" || to.pathname === "" ? "/" : typeof to === "string" ? history.parsePath(to).pathname : to.pathname;
-      }
-      function stripBasename(pathname, basename) {
-        if (basename === "/")
-          return pathname;
-        if (!pathname.toLowerCase().startsWith(basename.toLowerCase())) {
-          return null;
-        }
-        let nextChar = pathname.charAt(basename.length);
-        if (nextChar && nextChar !== "/") {
-          return null;
-        }
-        return pathname.slice(basename.length) || "/";
-      }
-      const joinPaths = (paths) => paths.join("/").replace(/\/\/+/g, "/");
-      const normalizePathname = (pathname) => pathname.replace(/\/+$/, "").replace(/^\/*/, "/");
-      const normalizeSearch = (search) => !search || search === "?" ? "" : search.startsWith("?") ? search : "?" + search;
-      const normalizeHash = (hash) => !hash || hash === "#" ? "" : hash.startsWith("#") ? hash : "#" + hash;
-      Object.defineProperty(exports2, "NavigationType", {
-        enumerable: true,
-        get: function() {
-          return history.Action;
-        }
-      });
-      Object.defineProperty(exports2, "createPath", {
-        enumerable: true,
-        get: function() {
-          return history.createPath;
-        }
-      });
-      Object.defineProperty(exports2, "parsePath", {
-        enumerable: true,
-        get: function() {
-          return history.parsePath;
-        }
-      });
-      exports2.MemoryRouter = MemoryRouter;
-      exports2.Navigate = Navigate;
-      exports2.Outlet = Outlet;
-      exports2.Route = Route2;
-      exports2.Router = Router;
-      exports2.Routes = Routes;
-      exports2.UNSAFE_LocationContext = LocationContext;
-      exports2.UNSAFE_NavigationContext = NavigationContext;
-      exports2.UNSAFE_RouteContext = RouteContext;
-      exports2.createRoutesFromChildren = createRoutesFromChildren;
-      exports2.generatePath = generatePath;
-      exports2.matchPath = matchPath;
-      exports2.matchRoutes = matchRoutes;
-      exports2.renderMatches = renderMatches;
-      exports2.resolvePath = resolvePath;
-      exports2.useHref = useHref;
-      exports2.useInRouterContext = useInRouterContext;
-      exports2.useLocation = useLocation;
-      exports2.useMatch = useMatch;
-      exports2.useNavigate = useNavigate;
-      exports2.useNavigationType = useNavigationType;
-      exports2.useOutlet = useOutlet;
-      exports2.useOutletContext = useOutletContext;
-      exports2.useParams = useParams;
-      exports2.useResolvedPath = useResolvedPath;
-      exports2.useRoutes = useRoutes;
-      Object.defineProperty(exports2, "__esModule", { value: true });
-    });
-  }
-});
-
-// node_modules/react-router/main.js
-var require_main2 = __commonJS({
-  "node_modules/react-router/main.js"(exports, module) {
-    "use strict";
-    init_react_shim();
-    if (false) {
-      module.exports = null;
-    } else {
-      module.exports = require_react_router_development();
-    }
-  }
-});
-
-// node_modules/react-router-dom/umd/react-router-dom.development.js
-var require_react_router_dom_development = __commonJS({
-  "node_modules/react-router-dom/umd/react-router-dom.development.js"(exports, module) {
-    init_react_shim();
-    (function(global, factory) {
-      typeof exports === "object" && typeof module !== "undefined" ? factory(exports, require_react(), require_main(), require_main2()) : typeof define === "function" && define.amd ? define(["exports", "react", "history", "react-router"], factory) : (global = global || self, factory(global.ReactRouterDOM = {}, global.React, global.HistoryLibrary, global.ReactRouter));
-    })(exports, function(exports2, React3, history, reactRouter) {
-      "use strict";
-      function _extends() {
-        _extends = Object.assign || function(target) {
-          for (var i = 1; i < arguments.length; i++) {
-            var source = arguments[i];
-            for (var key in source) {
-              if (Object.prototype.hasOwnProperty.call(source, key)) {
-                target[key] = source[key];
-              }
-            }
-          }
-          return target;
-        };
-        return _extends.apply(this, arguments);
-      }
-      function _objectWithoutPropertiesLoose(source, excluded) {
-        if (source == null)
-          return {};
-        var target = {};
-        var sourceKeys = Object.keys(source);
-        var key, i;
-        for (i = 0; i < sourceKeys.length; i++) {
-          key = sourceKeys[i];
-          if (excluded.indexOf(key) >= 0)
-            continue;
-          target[key] = source[key];
-        }
-        return target;
-      }
-      const _excluded = ["onClick", "reloadDocument", "replace", "state", "target", "to"], _excluded2 = ["aria-current", "caseSensitive", "className", "end", "style", "to", "children"];
-      function warning(cond, message) {
-        if (!cond) {
-          if (typeof console !== "undefined")
-            console.warn(message);
-          try {
-            throw new Error(message);
-          } catch (e) {
-          }
-        }
-      }
-      function BrowserRouter2(_ref) {
-        let {
-          basename,
-          children,
-          window: window2
-        } = _ref;
-        let historyRef = React3.useRef();
-        if (historyRef.current == null) {
-          historyRef.current = history.createBrowserHistory({
-            window: window2
-          });
-        }
-        let history$1 = historyRef.current;
-        let [state, setState] = React3.useState({
-          action: history$1.action,
-          location: history$1.location
-        });
-        React3.useLayoutEffect(() => history$1.listen(setState), [history$1]);
-        return /* @__PURE__ */ React3.createElement(reactRouter.Router, {
-          basename,
-          children,
-          location: state.location,
-          navigationType: state.action,
-          navigator: history$1
-        });
-      }
-      function HashRouter(_ref2) {
-        let {
-          basename,
-          children,
-          window: window2
-        } = _ref2;
-        let historyRef = React3.useRef();
-        if (historyRef.current == null) {
-          historyRef.current = history.createHashHistory({
-            window: window2
-          });
-        }
-        let history$1 = historyRef.current;
-        let [state, setState] = React3.useState({
-          action: history$1.action,
-          location: history$1.location
-        });
-        React3.useLayoutEffect(() => history$1.listen(setState), [history$1]);
-        return /* @__PURE__ */ React3.createElement(reactRouter.Router, {
-          basename,
-          children,
-          location: state.location,
-          navigationType: state.action,
-          navigator: history$1
-        });
-      }
-      function HistoryRouter(_ref3) {
-        let {
-          basename,
-          children,
-          history: history2
-        } = _ref3;
-        const [state, setState] = React3.useState({
-          action: history2.action,
-          location: history2.location
-        });
-        React3.useLayoutEffect(() => history2.listen(setState), [history2]);
-        return /* @__PURE__ */ React3.createElement(reactRouter.Router, {
-          basename,
-          children,
-          location: state.location,
-          navigationType: state.action,
-          navigator: history2
-        });
-      }
-      {
-        HistoryRouter.displayName = "unstable_HistoryRouter";
-      }
-      function isModifiedEvent(event) {
-        return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
-      }
-      const Link = /* @__PURE__ */ React3.forwardRef(function LinkWithRef(_ref4, ref) {
-        let {
-          onClick,
-          reloadDocument,
-          replace = false,
-          state,
-          target,
-          to
-        } = _ref4, rest = _objectWithoutPropertiesLoose(_ref4, _excluded);
-        let href = reactRouter.useHref(to);
-        let internalOnClick = useLinkClickHandler(to, {
-          replace,
-          state,
-          target
-        });
-        function handleClick(event) {
-          if (onClick)
-            onClick(event);
-          if (!event.defaultPrevented && !reloadDocument) {
-            internalOnClick(event);
-          }
-        }
-        return /* @__PURE__ */ React3.createElement("a", _extends({}, rest, {
-          href,
-          onClick: handleClick,
-          ref,
-          target
-        }));
-      });
-      {
-        Link.displayName = "Link";
-      }
-      const NavLink = /* @__PURE__ */ React3.forwardRef(function NavLinkWithRef(_ref5, ref) {
-        let {
-          "aria-current": ariaCurrentProp = "page",
-          caseSensitive = false,
-          className: classNameProp = "",
-          end = false,
-          style: styleProp,
-          to,
-          children
-        } = _ref5, rest = _objectWithoutPropertiesLoose(_ref5, _excluded2);
-        let location = reactRouter.useLocation();
-        let path = reactRouter.useResolvedPath(to);
-        let locationPathname = location.pathname;
-        let toPathname = path.pathname;
-        if (!caseSensitive) {
-          locationPathname = locationPathname.toLowerCase();
-          toPathname = toPathname.toLowerCase();
-        }
-        let isActive = locationPathname === toPathname || !end && locationPathname.startsWith(toPathname) && locationPathname.charAt(toPathname.length) === "/";
-        let ariaCurrent = isActive ? ariaCurrentProp : void 0;
-        let className;
-        if (typeof classNameProp === "function") {
-          className = classNameProp({
-            isActive
-          });
-        } else {
-          className = [classNameProp, isActive ? "active" : null].filter(Boolean).join(" ");
-        }
-        let style = typeof styleProp === "function" ? styleProp({
-          isActive
-        }) : styleProp;
-        return /* @__PURE__ */ React3.createElement(Link, _extends({}, rest, {
-          "aria-current": ariaCurrent,
-          className,
-          ref,
-          style,
-          to
-        }), typeof children === "function" ? children({
-          isActive
-        }) : children);
-      });
-      {
-        NavLink.displayName = "NavLink";
-      }
-      function useLinkClickHandler(to, _temp) {
-        let {
-          target,
-          replace: replaceProp,
-          state
-        } = _temp === void 0 ? {} : _temp;
-        let navigate = reactRouter.useNavigate();
-        let location = reactRouter.useLocation();
-        let path = reactRouter.useResolvedPath(to);
-        return React3.useCallback((event) => {
-          if (event.button === 0 && (!target || target === "_self") && !isModifiedEvent(event)) {
-            event.preventDefault();
-            let replace = !!replaceProp || reactRouter.createPath(location) === reactRouter.createPath(path);
-            navigate(to, {
-              replace,
-              state
-            });
-          }
-        }, [location, navigate, path, replaceProp, state, target, to]);
-      }
-      function useSearchParams(defaultInit) {
-        warning(typeof URLSearchParams !== "undefined", "You cannot use the `useSearchParams` hook in a browser that does not support the URLSearchParams API. If you need to support Internet Explorer 11, we recommend you load a polyfill such as https://github.com/ungap/url-search-params\n\nIf you're unsure how to load polyfills, we recommend you check out https://polyfill.io/v3/ which provides some recommendations about how to load polyfills only for users that need them, instead of for every user.");
-        let defaultSearchParamsRef = React3.useRef(createSearchParams(defaultInit));
-        let location = reactRouter.useLocation();
-        let searchParams = React3.useMemo(() => {
-          let searchParams2 = createSearchParams(location.search);
-          for (let key of defaultSearchParamsRef.current.keys()) {
-            if (!searchParams2.has(key)) {
-              defaultSearchParamsRef.current.getAll(key).forEach((value) => {
-                searchParams2.append(key, value);
-              });
-            }
-          }
-          return searchParams2;
-        }, [location.search]);
-        let navigate = reactRouter.useNavigate();
-        let setSearchParams = React3.useCallback((nextInit, navigateOptions) => {
-          navigate("?" + createSearchParams(nextInit), navigateOptions);
-        }, [navigate]);
-        return [searchParams, setSearchParams];
-      }
-      function createSearchParams(init2) {
-        if (init2 === void 0) {
-          init2 = "";
-        }
-        return new URLSearchParams(typeof init2 === "string" || Array.isArray(init2) || init2 instanceof URLSearchParams ? init2 : Object.keys(init2).reduce((memo, key) => {
-          let value = init2[key];
-          return memo.concat(Array.isArray(value) ? value.map((v) => [key, v]) : [[key, value]]);
-        }, []));
-      }
-      Object.defineProperty(exports2, "MemoryRouter", {
-        enumerable: true,
-        get: function() {
-          return reactRouter.MemoryRouter;
-        }
-      });
-      Object.defineProperty(exports2, "Navigate", {
-        enumerable: true,
-        get: function() {
-          return reactRouter.Navigate;
-        }
-      });
-      Object.defineProperty(exports2, "NavigationType", {
-        enumerable: true,
-        get: function() {
-          return reactRouter.NavigationType;
-        }
-      });
-      Object.defineProperty(exports2, "Outlet", {
-        enumerable: true,
-        get: function() {
-          return reactRouter.Outlet;
-        }
-      });
-      Object.defineProperty(exports2, "Route", {
-        enumerable: true,
-        get: function() {
-          return reactRouter.Route;
-        }
-      });
-      Object.defineProperty(exports2, "Router", {
-        enumerable: true,
-        get: function() {
-          return reactRouter.Router;
-        }
-      });
-      Object.defineProperty(exports2, "Routes", {
-        enumerable: true,
-        get: function() {
-          return reactRouter.Routes;
-        }
-      });
-      Object.defineProperty(exports2, "UNSAFE_LocationContext", {
-        enumerable: true,
-        get: function() {
-          return reactRouter.UNSAFE_LocationContext;
-        }
-      });
-      Object.defineProperty(exports2, "UNSAFE_NavigationContext", {
-        enumerable: true,
-        get: function() {
-          return reactRouter.UNSAFE_NavigationContext;
-        }
-      });
-      Object.defineProperty(exports2, "UNSAFE_RouteContext", {
-        enumerable: true,
-        get: function() {
-          return reactRouter.UNSAFE_RouteContext;
-        }
-      });
-      Object.defineProperty(exports2, "createPath", {
-        enumerable: true,
-        get: function() {
-          return reactRouter.createPath;
-        }
-      });
-      Object.defineProperty(exports2, "createRoutesFromChildren", {
-        enumerable: true,
-        get: function() {
-          return reactRouter.createRoutesFromChildren;
-        }
-      });
-      Object.defineProperty(exports2, "generatePath", {
-        enumerable: true,
-        get: function() {
-          return reactRouter.generatePath;
-        }
-      });
-      Object.defineProperty(exports2, "matchPath", {
-        enumerable: true,
-        get: function() {
-          return reactRouter.matchPath;
-        }
-      });
-      Object.defineProperty(exports2, "matchRoutes", {
-        enumerable: true,
-        get: function() {
-          return reactRouter.matchRoutes;
-        }
-      });
-      Object.defineProperty(exports2, "parsePath", {
-        enumerable: true,
-        get: function() {
-          return reactRouter.parsePath;
-        }
-      });
-      Object.defineProperty(exports2, "renderMatches", {
-        enumerable: true,
-        get: function() {
-          return reactRouter.renderMatches;
-        }
-      });
-      Object.defineProperty(exports2, "resolvePath", {
-        enumerable: true,
-        get: function() {
-          return reactRouter.resolvePath;
-        }
-      });
-      Object.defineProperty(exports2, "useHref", {
-        enumerable: true,
-        get: function() {
-          return reactRouter.useHref;
-        }
-      });
-      Object.defineProperty(exports2, "useInRouterContext", {
-        enumerable: true,
-        get: function() {
-          return reactRouter.useInRouterContext;
-        }
-      });
-      Object.defineProperty(exports2, "useLocation", {
-        enumerable: true,
-        get: function() {
-          return reactRouter.useLocation;
-        }
-      });
-      Object.defineProperty(exports2, "useMatch", {
-        enumerable: true,
-        get: function() {
-          return reactRouter.useMatch;
-        }
-      });
-      Object.defineProperty(exports2, "useNavigate", {
-        enumerable: true,
-        get: function() {
-          return reactRouter.useNavigate;
-        }
-      });
-      Object.defineProperty(exports2, "useNavigationType", {
-        enumerable: true,
-        get: function() {
-          return reactRouter.useNavigationType;
-        }
-      });
-      Object.defineProperty(exports2, "useOutlet", {
-        enumerable: true,
-        get: function() {
-          return reactRouter.useOutlet;
-        }
-      });
-      Object.defineProperty(exports2, "useOutletContext", {
-        enumerable: true,
-        get: function() {
-          return reactRouter.useOutletContext;
-        }
-      });
-      Object.defineProperty(exports2, "useParams", {
-        enumerable: true,
-        get: function() {
-          return reactRouter.useParams;
-        }
-      });
-      Object.defineProperty(exports2, "useResolvedPath", {
-        enumerable: true,
-        get: function() {
-          return reactRouter.useResolvedPath;
-        }
-      });
-      Object.defineProperty(exports2, "useRoutes", {
-        enumerable: true,
-        get: function() {
-          return reactRouter.useRoutes;
-        }
-      });
-      exports2.BrowserRouter = BrowserRouter2;
-      exports2.HashRouter = HashRouter;
-      exports2.Link = Link;
-      exports2.NavLink = NavLink;
-      exports2.createSearchParams = createSearchParams;
-      exports2.unstable_HistoryRouter = HistoryRouter;
-      exports2.useLinkClickHandler = useLinkClickHandler;
-      exports2.useSearchParams = useSearchParams;
-      Object.defineProperty(exports2, "__esModule", { value: true });
-    });
-  }
-});
-
-// node_modules/react-router-dom/main.js
-var require_main3 = __commonJS({
-  "node_modules/react-router-dom/main.js"(exports, module) {
-    "use strict";
-    init_react_shim();
-    if (false) {
-      module.exports = null;
-    } else {
-      module.exports = require_react_router_dom_development();
-    }
-  }
-});
-
 // src/index.js
 var import_react, RouteDataContext, useLoaderData;
 var init_src = __esm({
@@ -22147,7 +20450,7 @@ var init_src = __esm({
     import_react = __toESM(require_react());
     RouteDataContext = (0, import_react.createContext)(null);
     useLoaderData = () => {
-      const context = useContext(RouteDataContext);
+      const context = (0, import_react.useContext)(RouteDataContext);
       return context;
     };
   }
@@ -22160,12 +20463,10 @@ __export(pages_exports, {
   loader: () => loader
 });
 function Home() {
-  const { posts } = useLoaderData();
-  return /* @__PURE__ */ React.createElement(React.Fragment, null, posts.map((post) => /* @__PURE__ */ React.createElement("div", {
-    key: post.id
-  }, /* @__PURE__ */ React.createElement("a", {
-    href: `/${post.id}`
-  }, post.title))));
+  const { posts } = useLoaderData() || { posts: ["yisar", 132] };
+  return /* @__PURE__ */ React.createElement(React.Fragment, null, posts.map((post) => /* @__PURE__ */ React.createElement("li", {
+    key: post
+  }, post)));
 }
 var loader;
 var init_pages = __esm({
@@ -22173,12 +20474,8 @@ var init_pages = __esm({
     init_react_shim();
     init_src();
     loader = async () => {
-      const res = await fetch("https://jsonplaceholder.typicode.com/posts?_limit=5");
-      const posts = await res.json();
       return {
-        props: {
-          posts
-        }
+        posts: ["yisar", 132]
       };
     };
   }
@@ -22219,9 +20516,8 @@ var require_regexparam = __commonJS({
 
 // demo/entry-client.js
 init_react_shim();
-var import_react3 = __toESM(require_react());
+var import_react4 = __toESM(require_react());
 var import_react_dom = __toESM(require_react_dom());
-var import_react_router_dom = __toESM(require_main3());
 
 // src/client/index.js
 init_react_shim();
@@ -22292,9 +20588,145 @@ function useFetchRouteData() {
   };
 }
 
-// demo/App.js
+// node_modules/wouter/index.js
 init_react_shim();
-function App({ Component }) {
+
+// node_modules/wouter/use-location.js
+init_react_shim();
+
+// node_modules/wouter/react-deps.js
+init_react_shim();
+var import_react3 = __toESM(require_react(), 1);
+
+// node_modules/wouter/use-location.js
+var eventPopstate = "popstate";
+var eventPushState = "pushState";
+var eventReplaceState = "replaceState";
+var events = [eventPopstate, eventPushState, eventReplaceState];
+var use_location_default = ({ base = "" } = {}) => {
+  const [{ path, search }, update] = (0, import_react3.useState)(() => ({
+    path: currentPathname(base),
+    search: location.search
+  }));
+  const prevHash = (0, import_react3.useRef)(path + search);
+  (0, import_react3.useEffect)(() => {
+    const checkForUpdates = () => {
+      const pathname = currentPathname(base);
+      const search2 = location.search;
+      const hash = pathname + search2;
+      if (prevHash.current !== hash) {
+        prevHash.current = hash;
+        update({ path: pathname, search: search2 });
+      }
+    };
+    events.forEach((e) => addEventListener(e, checkForUpdates));
+    checkForUpdates();
+    return () => events.forEach((e) => removeEventListener(e, checkForUpdates));
+  }, [base]);
+  const navigate = (0, import_react3.useCallback)((to, { replace = false } = {}) => history[replace ? eventReplaceState : eventPushState](null, "", to[0] === "~" ? to.slice(1) : base + to), [base]);
+  return [path, navigate];
+};
+if (typeof history !== "undefined") {
+  for (const type of [eventPushState, eventReplaceState]) {
+    const original = history[type];
+    history[type] = function() {
+      const result = original.apply(this, arguments);
+      const event = new Event(type);
+      event.arguments = arguments;
+      dispatchEvent(event);
+      return result;
+    };
+  }
+}
+var currentPathname = (base, path = location.pathname) => !path.toLowerCase().indexOf(base.toLowerCase()) ? path.slice(base.length) || "/" : "~" + path;
+
+// node_modules/wouter/matcher.js
+init_react_shim();
+function makeMatcher(makeRegexpFn = pathToRegexp) {
+  let cache = {};
+  const getRegexp = (pattern) => cache[pattern] || (cache[pattern] = makeRegexpFn(pattern));
+  return (pattern, path) => {
+    const { regexp, keys } = getRegexp(pattern || "");
+    const out = regexp.exec(path);
+    if (!out)
+      return [false, null];
+    const params = keys.reduce((params2, key, i) => {
+      params2[key.name] = out[i + 1];
+      return params2;
+    }, {});
+    return [true, params];
+  };
+}
+var escapeRx = (str) => str.replace(/([.+*?=^!:${}()[\]|/\\])/g, "\\$1");
+var rxForSegment = (repeat, optional, prefix) => {
+  let capture = repeat ? "((?:[^\\/]+?)(?:\\/(?:[^\\/]+?))*)" : "([^\\/]+?)";
+  if (optional && prefix)
+    capture = "(?:\\/" + capture + ")";
+  return capture + (optional ? "?" : "");
+};
+var pathToRegexp = (pattern) => {
+  const groupRx = /:([A-Za-z0-9_]+)([?+*]?)/g;
+  let match = null, lastIndex = 0, keys = [], result = "";
+  while ((match = groupRx.exec(pattern)) !== null) {
+    const [_, segment, mod] = match;
+    const repeat = mod === "+" || mod === "*";
+    const optional = mod === "?" || mod === "*";
+    const prefix = optional && pattern[match.index - 1] === "/" ? 1 : 0;
+    const prev = pattern.substring(lastIndex, match.index - prefix);
+    keys.push({ name: segment });
+    lastIndex = groupRx.lastIndex;
+    result += escapeRx(prev) + rxForSegment(repeat, optional, prefix);
+  }
+  result += escapeRx(pattern.substring(lastIndex));
+  return { keys, regexp: new RegExp("^" + result + "(?:\\/)?$", "i") };
+};
+
+// node_modules/wouter/index.js
+var RouterCtx = (0, import_react3.createContext)({});
+var buildRouter = ({
+  hook = use_location_default,
+  base = "",
+  matcher = makeMatcher()
+} = {}) => ({ hook, base, matcher });
+var useRouter = () => {
+  const globalRef = (0, import_react3.useContext)(RouterCtx);
+  return globalRef.v || (globalRef.v = buildRouter());
+};
+var useLocation = () => {
+  const router = useRouter();
+  return router.hook(router);
+};
+var useRoute = (pattern) => {
+  const [path] = useLocation();
+  return useRouter().matcher(pattern, path);
+};
+var Route = ({ path, match, component, children }) => {
+  const useRouteMatch = useRoute(path);
+  const [matches, params] = match || useRouteMatch;
+  if (!matches)
+    return null;
+  if (component)
+    return (0, import_react3.createElement)(component, { params });
+  return typeof children === "function" ? children(params) : children;
+};
+var flattenChildren = (children) => {
+  return Array.isArray(children) ? [].concat(...children.map((c) => c && c.type === import_react3.Fragment ? flattenChildren(c.props.children) : flattenChildren(c))) : [children];
+};
+var Switch = ({ children, location: location2 }) => {
+  const { matcher } = useRouter();
+  const [originalLocation] = useLocation();
+  for (const element of flattenChildren(children)) {
+    let match = 0;
+    if ((0, import_react3.isValidElement)(element) && (match = element.props.path ? matcher(element.props.path, location2 || originalLocation) : [true, {}])[0])
+      return (0, import_react3.cloneElement)(element, { match });
+  }
+  return null;
+};
+
+// src/render-app.js
+init_react_shim();
+function App({ Component, data }) {
+  console.log(data, Component);
   return /* @__PURE__ */ React.createElement("html", {
     lang: "en"
   }, /* @__PURE__ */ React.createElement("head", null, /* @__PURE__ */ React.createElement("meta", {
@@ -22310,14 +20742,14 @@ function App({ Component }) {
 // demo/entry-client.js
 var premixData = document.getElementById("__REMIX_DATA__");
 var initialData = JSON.parse(premixData.innerHTML);
-function HistoryWrapper() {
-  const history = (0, import_react_router_dom.useHistory)();
+function Router() {
+  const history2 = useHistory();
   const fetchRouteData = useFetchRouteData();
-  (0, import_react3.useEffect)(() => {
-    const unsubscribe = history.listen((location) => fetchRouteData(location.pathname));
+  (0, import_react4.useEffect)(() => {
+    const unsubscribe = history2.listen((location2) => fetchRouteData(location2.pathname));
     return () => unsubscribe();
   }, []);
-  return /* @__PURE__ */ React.createElement(import_react_router_dom.Switch, null, routes.map((route) => /* @__PURE__ */ React.createElement(import_react_router_dom.Route, {
+  return /* @__PURE__ */ React.createElement(Switch, null, routes.map((route) => /* @__PURE__ */ React.createElement(Route, {
     key: route.path,
     path: route.path,
     exact: true,
@@ -22327,9 +20759,9 @@ function HistoryWrapper() {
 async function init() {
   const route = routes.find((x) => matchRoute(x.path, window.location.pathname));
   await route.page();
-  import_react_dom.default.hydrate(/* @__PURE__ */ React.createElement(import_react_router_dom.BrowserRouter, null, /* @__PURE__ */ React.createElement(App, {
-    Component: HistoryWrapper
-  })), document);
+  import_react_dom.default.hydrate(/* @__PURE__ */ React.createElement(App, {
+    Component: Router
+  }), document);
 }
 init();
 /*
@@ -22349,26 +20781,6 @@ object-assign
  * @return {boolean} True if the event is supported.
  * @internal
  * @license Modernizr 3.0.0pre (Custom Build) | MIT
- */
-/**
- * React Router DOM v6.2.2
- *
- * Copyright (c) Remix Software Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.md file in the root directory of this source tree.
- *
- * @license MIT
- */
-/**
- * React Router v6.2.2
- *
- * Copyright (c) Remix Software Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.md file in the root directory of this source tree.
- *
- * @license MIT
  */
 /** @license React v0.20.2
  * scheduler-tracing.development.js

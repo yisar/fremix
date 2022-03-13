@@ -9,16 +9,16 @@ export async function renderApp(url) {
     }
     const page = await route.page()
     console.log(page)
-    const data = page.loader()
-    const component = page.defalut
+    const data = await page.loader()
+    const component = page.default
 
     return () => {
         return <App Component={component} data={data}></App>
     }
 }
 
-function App({ Component, data }) {
-    console.log(data)
+export function App({ Component, data }) {
+    console.log(data, Component)
     return (
         <html lang="en">
             <head>

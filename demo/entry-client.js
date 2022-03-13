@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import { useFetchRouteData } from '../src/client';
 import { Route,Switch } from "wouter"
 import matchRoute from '../src/match-route';
-import App from './App';
 import { routes } from './routes';
+import { App } from '../src/render-app';
 
 const premixData = document.getElementById('__REMIX_DATA__');
 const initialData = JSON.parse(premixData.innerHTML);

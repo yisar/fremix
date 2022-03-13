@@ -40,7 +40,7 @@ var init_src = __esm({
     import_react2 = __toESM(require("react"));
     RouteDataContext = (0, import_react2.createContext)(null);
     useLoaderData = () => {
-      const context = useContext(RouteDataContext);
+      const context = (0, import_react2.useContext)(RouteDataContext);
       return context;
     };
   }
@@ -53,12 +53,10 @@ __export(pages_exports, {
   loader: () => loader
 });
 function Home() {
-  const { posts } = useLoaderData();
-  return /* @__PURE__ */ React.createElement(React.Fragment, null, posts.map((post) => /* @__PURE__ */ React.createElement("div", {
-    key: post.id
-  }, /* @__PURE__ */ React.createElement("a", {
-    href: `/${post.id}`
-  }, post.title))));
+  const { posts } = useLoaderData() || { posts: ["yisar", 132] };
+  return /* @__PURE__ */ React.createElement(React.Fragment, null, posts.map((post) => /* @__PURE__ */ React.createElement("li", {
+    key: post
+  }, post)));
 }
 var loader;
 var init_pages = __esm({
@@ -66,12 +64,8 @@ var init_pages = __esm({
     init_react_shim();
     init_src();
     loader = async () => {
-      const res = await fetch("https://jsonplaceholder.typicode.com/posts?_limit=5");
-      const posts = await res.json();
       return {
-        props: {
-          posts
-        }
+        posts: ["yisar", 132]
       };
     };
   }
@@ -144,8 +138,8 @@ async function renderApp(url) {
   }
   const page = await route.page();
   console.log(page);
-  const data = page.loader();
-  const component = page.defalut;
+  const data = await page.loader();
+  const component = page.default;
   return () => {
     return /* @__PURE__ */ React.createElement(App, {
       Component: component,
@@ -154,7 +148,7 @@ async function renderApp(url) {
   };
 }
 function App({ Component, data }) {
-  console.log(data);
+  console.log(data, Component);
   return /* @__PURE__ */ React.createElement("html", {
     lang: "en"
   }, /* @__PURE__ */ React.createElement("head", null, /* @__PURE__ */ React.createElement("meta", {
@@ -176,6 +170,8 @@ function handleRequest(App2) {
 }
 
 // server.js
+var import_ohmyfetch = require("ohmyfetch");
+global.fetch = import_ohmyfetch.$fetch;
 var app = (0, import_express.default)();
 app.use(import_express.default.static("public"));
 app.use(import_express.default.json());
