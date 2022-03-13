@@ -12,6 +12,24 @@ export async function renderApp(url) {
     const data = page.loader()
     const component = page.defalut
 
-    
-    return { notFound: true }
+    return () => {
+        return <App Component={component} data={data}></App>
+    }
+}
+
+function App({ Component, data }) {
+    console.log(data)
+    return (
+        <html lang="en">
+            <head>
+                <meta charSet="UTF-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            </head>
+            <body>
+                <div id="__fremix">
+                    <Component />
+                </div>
+            </body>
+        </html>
+    );
 }

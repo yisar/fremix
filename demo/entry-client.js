@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch, useHistory } from 'react-router-dom';
 import { useFetchRouteData } from '../src/client';
+import { Route,Switch } from "wouter"
 import matchRoute from '../src/match-route';
 import App from './App';
 import { routes } from './routes';
@@ -9,7 +9,7 @@ import { routes } from './routes';
 const premixData = document.getElementById('__REMIX_DATA__');
 const initialData = JSON.parse(premixData.innerHTML);
 
-function HistoryWrapper() {
+function Router() {
   const history = useHistory();
   const fetchRouteData = useFetchRouteData();
 
@@ -40,10 +40,7 @@ async function init() {
   await route.page();
 
   ReactDOM.hydrate(
-      <BrowserRouter>
-        <App Component={HistoryWrapper} />
-      </BrowserRouter>,
-    document
+    <App Component={Router} />, document
   );
 }
 

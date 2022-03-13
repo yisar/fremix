@@ -1,5 +1,6 @@
 import express from 'express';
 import { renderApp } from './src/render-app';
+import handleRequest from './demo/entry-server'
 
 const app = express();
 

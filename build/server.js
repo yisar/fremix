@@ -144,7 +144,35 @@ async function renderApp(url) {
   }
   const page = await route.page();
   console.log(page);
-  return { notFound: true };
+  const data = page.loader();
+  const component = page.defalut;
+  return () => {
+    return /* @__PURE__ */ React.createElement(App, {
+      Component: component,
+      data
+    });
+  };
+}
+function App({ Component, data }) {
+  console.log(data);
+  return /* @__PURE__ */ React.createElement("html", {
+    lang: "en"
+  }, /* @__PURE__ */ React.createElement("head", null, /* @__PURE__ */ React.createElement("meta", {
+    charSet: "UTF-8"
+  }), /* @__PURE__ */ React.createElement("meta", {
+    name: "viewport",
+    content: "width=device-width, initial-scale=1.0"
+  })), /* @__PURE__ */ React.createElement("body", null, /* @__PURE__ */ React.createElement("div", {
+    id: "__fremix"
+  }, /* @__PURE__ */ React.createElement(Component, null))));
+}
+
+// demo/entry-server.js
+init_react_shim();
+var import_server = __toESM(require("react-dom/server"));
+function handleRequest(App2) {
+  const markup = import_server.default.renderToString(/* @__PURE__ */ React.createElement(App2, null));
+  return `<!DOCTYPE html>${markup}`;
 }
 
 // server.js
