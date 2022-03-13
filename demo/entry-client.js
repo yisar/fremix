@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch, useHistory } from 'react-router-dom';
-import { PremixProvider } from '../src';
 import { useFetchRouteData } from '../src/client';
 import matchRoute from '../src/match-route';
 import App from './App';
@@ -41,11 +40,9 @@ async function init() {
   await route.page();
 
   ReactDOM.hydrate(
-    <PremixProvider context={initialData}>
       <BrowserRouter>
         <App Component={HistoryWrapper} />
-      </BrowserRouter>
-    </PremixProvider>,
+      </BrowserRouter>,
     document
   );
 }

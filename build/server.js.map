@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/react-shim.js", "../server.js", "../src/server/request.js"],
+  "sourcesContent": ["export * as React from 'react';", "import express from 'express';\r\nimport { createRequestHandler } from './src/server/request';\r\n\r\nconst app = express();\r\n\r\napp.use(express.static('public'));\r\napp.use(express.json());\r\napp.use(express.urlencoded({ extended: true }));\r\n\r\napp.use('/', createRequestHandler());\r\n\r\napp.listen(3000, () => {\r\n  console.log('Server started on http://localhost:3000');\r\n})", "export function createRequestHandler(){}"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;AAAA,YAAuB;;;ACAvB,qBAAoB;;;ACAb,gCAA+B;AAAC;;;ADGvC,IAAM,MAAM,4BAAQ;AAEpB,IAAI,IAAI,uBAAQ,OAAO,QAAQ,CAAC;AAChC,IAAI,IAAI,uBAAQ,KAAK,CAAC;AACtB,IAAI,IAAI,uBAAQ,WAAW,EAAE,UAAU,KAAK,CAAC,CAAC;AAE9C,IAAI,IAAI,KAAK,qBAAqB,CAAC;AAEnC,IAAI,OAAO,KAAM,MAAM;AACrB,UAAQ,IAAI,yCAAyC;AACvD,CAAC;",
+  "names": []
+}

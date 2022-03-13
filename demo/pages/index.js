@@ -1,4 +1,4 @@
-import { useRouteData } from '../../src';
+import { useLoaderData } from '../../src/index';
 
 export const loader = async () => {
   const res = await fetch(
@@ -14,7 +14,7 @@ export const loader = async () => {
 };
 
 export default function Home() {
-  const { posts }= useRouteData();
+  const { posts }= useLoaderData();
 
   return (
     <>

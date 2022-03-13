@@ -1,5 +1,5 @@
 const esbuild = require('esbuild');
-const pkg = require('../package.json');
+const pkg = require('./package.json');
 
 const isProd = process.env.NODE_ENV === 'production';
 const shouldWatch = process.env.WATCH === 'true'
@@ -32,6 +32,7 @@ const buildClient = () => {
         platform: 'node',
         outdir: 'public/build',
         format: 'esm',
+        loader: { '.js': 'jsx' },
         splitting: true,
         inject: ['./src/react-shim.js'],
         bundle: true,

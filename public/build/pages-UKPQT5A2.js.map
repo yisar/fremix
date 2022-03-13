@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../demo/pages/index.js"],
+  "sourcesContent": ["import { useLoaderData } from '../../src/index';\n\nexport const loader = async () => {\n  const res = await fetch(\n    'https://jsonplaceholder.typicode.com/posts?_limit=5'\n  );\n  const posts = await res.json();\n\n  return {\n    props: {\n      posts,\n    },\n  };\n};\n\nexport default function Home() {\n  const { posts }= useLoaderData();\n\n  return (\n    <>\n      {posts.map(post => (\n        <div key={post.id}>\n          <a href={`/${post.id}`}>{post.title}</a>\n        </div>\n      ))}\n    </>\n  );\n}\n"],
+  "mappings": ";;;;;;;AAAA;AAEO,IAAM,SAAS,YAAY;AAChC,QAAM,MAAM,MAAM,MAChB,qDACF;AACA,QAAM,QAAQ,MAAM,IAAI,KAAK;AAE7B,SAAO;AAAA,IACL,OAAO;AAAA,MACL;AAAA,IACF;AAAA,EACF;AACF;AAEe,gBAAgB;AAC7B,QAAM,EAAE,UAAS,cAAc;AAE/B,SACE,0DACG,MAAM,IAAI,UACT,oCAAC;AAAA,IAAI,KAAK,KAAK;AAAA,KACb,oCAAC;AAAA,IAAE,MAAM,IAAI,KAAK;AAAA,KAAO,KAAK,KAAM,CACtC,CACD,CACH;AAEJ;",
+  "names": []
+}

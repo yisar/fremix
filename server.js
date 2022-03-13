@@ -1,5 +1,5 @@
 import express from 'express';
-import { createRequestHandler } from './server';
+import { createRequestHandler } from './src/server/request';
 
 const app = express();
 
