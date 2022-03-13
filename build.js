@@ -9,6 +9,7 @@ const buildServer = () => {
         entryPoints: ['./server.js'],
         platform: 'node',
         outdir: 'build',
+        loader:{ '.js': 'jsx' },
         external: [
             ...Object.keys(pkg.dependencies),
             ...Object.keys(pkg.devDependencies),
@@ -33,7 +34,7 @@ const buildClient = () => {
         outdir: 'public/build',
         format: 'esm',
         loader: { '.js': 'jsx' },
-        splitting: true,
+        // splitting: true,
         inject: ['./src/react-shim.js'],
         bundle: true,
         watch: shouldWatch,

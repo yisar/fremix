@@ -1,4 +1,4 @@
-const param = require('regexparam')
+import param from 'regexparam'
 
 export default function matchRoute(route, toMatch) {
   const routeRegex = param(route);
