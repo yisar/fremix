@@ -53,7 +53,8 @@ __export(pages_exports, {
   loader: () => loader
 });
 function Home() {
-  const { posts } = useLoaderData() || { posts: ["yisar", 132] };
+  const { posts } = useLoaderData();
+  console.log(posts);
   return /* @__PURE__ */ React.createElement(React.Fragment, null, posts.map((post) => /* @__PURE__ */ React.createElement("li", {
     key: post
   }, post)));
@@ -130,6 +131,7 @@ function matchRoute(route, toMatch) {
 }
 
 // src/render-app.js
+init_src();
 async function renderApp(url) {
   const urlWithoutQuery = new URL(`https://example.com${url}`).pathname;
   const route = routes.find((x) => matchRoute(x.path, urlWithoutQuery));
@@ -137,18 +139,18 @@ async function renderApp(url) {
     return { notFound: true };
   }
   const page = await route.page();
-  console.log(page);
   const data = await page.loader();
   const component = page.default;
   return () => {
-    return /* @__PURE__ */ React.createElement(App, {
+    return /* @__PURE__ */ React.createElement(RouteDataContext.Provider, {
+      value: data
+    }, /* @__PURE__ */ React.createElement(App, {
       Component: component,
       data
-    });
+    }));
   };
 }
 function App({ Component, data }) {
-  console.log(data, Component);
   return /* @__PURE__ */ React.createElement("html", {
     lang: "en"
   }, /* @__PURE__ */ React.createElement("head", null, /* @__PURE__ */ React.createElement("meta", {

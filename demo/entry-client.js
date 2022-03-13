@@ -39,7 +39,7 @@ async function init() {
   const route = routes.find(x => matchRoute(x.path, window.location.pathname));
   await route.page();
 
-  ReactDOM.hydrate(
+  ReactDOM.render(
     <App Component={Router} />, document
   );
 }

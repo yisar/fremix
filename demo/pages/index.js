@@ -7,7 +7,9 @@ export const loader = async () => {
 };
 
 export default function Home() {
-  const { posts } = useLoaderData() || { posts: ['yisar', 132] };
+  const { posts } = useLoaderData();
+
+  console.log(posts)
 
   return (
     <>

@@ -1,5 +1,6 @@
 import { routes } from "../demo/routes";
 import matchRoute from "./match-route";
+import {RouteDataContext} from './index'
 
 export async function renderApp(url) {
     const urlWithoutQuery = new URL(`https://example.com${url}`).pathname;
@@ -8,17 +9,15 @@ export async function renderApp(url) {
         return { notFound: true }
     }
     const page = await route.page()
-    console.log(page)
     const data = await page.loader()
     const component = page.default
 
     return () => {
-        return <App Component={component} data={data}></App>
+        return <RouteDataContext.Provider value={data}><App Component={component} data={data}></App></RouteDataContext.Provider>
     }
 }
 
 export function App({ Component, data }) {
-    console.log(data, Component)
     return (
         <html lang="en">
             <head>
