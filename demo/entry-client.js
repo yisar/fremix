@@ -1,26 +1,13 @@
-import { useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { useFetchRouteData } from '../src/client';
 import { Route,Switch } from "wouter"
 import matchRoute from '../src/match-route';
 import { routes } from './routes';
 import { App } from '../src/render-app';
 
-const premixData = document.getElementById('__REMIX_DATA__');
-const initialData = JSON.parse(premixData.innerHTML);
+const fremixData = document.getElementById('__fremix_data');
+window.__fremix_data = JSON.parse(fremixData.innerHTML)
 
 function Router() {
-  const history = useHistory();
-  const fetchRouteData = useFetchRouteData();
-
-  useEffect(() => {
-    const unsubscribe = history.listen(location =>
-      fetchRouteData(location.pathname)
-    );
-
-    return () => unsubscribe();
-  }, []);
-
   return (
     <Switch>
       {routes.map(route => (

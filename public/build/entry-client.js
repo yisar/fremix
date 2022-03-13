@@ -1064,7 +1064,7 @@ var require_react_development = __commonJS({
           var dispatcher = resolveDispatcher();
           return dispatcher.useRef(initialValue);
         }
-        function useEffect4(create, deps) {
+        function useEffect3(create, deps) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useEffect(create, deps);
         }
@@ -1634,7 +1634,7 @@ var require_react_development = __commonJS({
         exports.useCallback = useCallback3;
         exports.useContext = useContext3;
         exports.useDebugValue = useDebugValue;
-        exports.useEffect = useEffect4;
+        exports.useEffect = useEffect3;
         exports.useImperativeHandle = useImperativeHandle;
         exports.useLayoutEffect = useLayoutEffect2;
         exports.useMemo = useMemo;
@@ -20442,46 +20442,6 @@ var require_react_dom = __commonJS({
   }
 });
 
-// src/index.js
-var import_react, RouteDataContext, useLoaderData;
-var init_src = __esm({
-  "src/index.js"() {
-    init_react_shim();
-    import_react = __toESM(require_react());
-    RouteDataContext = (0, import_react.createContext)(null);
-    useLoaderData = () => {
-      const context = (0, import_react.useContext)(RouteDataContext);
-      return context;
-    };
-  }
-});
-
-// demo/pages/index.js
-var pages_exports = {};
-__export(pages_exports, {
-  default: () => Home,
-  loader: () => loader
-});
-function Home() {
-  const { posts } = useLoaderData();
-  console.log(posts);
-  return /* @__PURE__ */ React.createElement(React.Fragment, null, posts.map((post) => /* @__PURE__ */ React.createElement("li", {
-    key: post
-  }, post)));
-}
-var loader;
-var init_pages = __esm({
-  "demo/pages/index.js"() {
-    init_react_shim();
-    init_src();
-    loader = async () => {
-      return {
-        posts: ["yisar", 132]
-      };
-    };
-  }
-});
-
 // node_modules/regexparam/dist/regexparam.js
 var require_regexparam = __commonJS({
   "node_modules/regexparam/dist/regexparam.js"(exports, module) {
@@ -20515,79 +20475,52 @@ var require_regexparam = __commonJS({
   }
 });
 
+// src/index.js
+var import_react3, RouteDataContext, useLoaderData;
+var init_src = __esm({
+  "src/index.js"() {
+    init_react_shim();
+    import_react3 = __toESM(require_react());
+    RouteDataContext = (0, import_react3.createContext)(null);
+    useLoaderData = () => {
+      const context = (0, import_react3.useContext)(RouteDataContext);
+      if (typeof window !== "undefined") {
+        return window.__fremix_data;
+      }
+      return context;
+    };
+  }
+});
+
+// demo/pages/index.js
+var pages_exports = {};
+__export(pages_exports, {
+  default: () => Home,
+  loader: () => loader
+});
+function Home() {
+  const { posts } = useLoaderData();
+  console.log(posts);
+  return /* @__PURE__ */ React.createElement(React.Fragment, null, posts.map((post) => /* @__PURE__ */ React.createElement("li", {
+    key: post
+  }, post)));
+}
+var loader;
+var init_pages = __esm({
+  "demo/pages/index.js"() {
+    init_react_shim();
+    init_src();
+    loader = async () => {
+      return {
+        posts: ["yisar", 132]
+      };
+    };
+  }
+});
+
 // demo/entry-client.js
 init_react_shim();
-var import_react4 = __toESM(require_react());
 var import_react_dom = __toESM(require_react_dom());
-
-// src/client/index.js
-init_react_shim();
-init_src();
-
-// demo/routes.js
-init_react_shim();
-
-// src/loadable.js
-init_react_shim();
-var import_react2 = __toESM(require_react());
-function useForceUpdate() {
-  const [, dispatch] = (0, import_react2.useState)({});
-  const forceUpdate = (0, import_react2.useCallback)(() => {
-    dispatch({});
-  }, []);
-  return forceUpdate;
-}
-function loadable(importFn, { fallback = () => null } = {}) {
-  return function LoadableComponent(props) {
-    const component = (0, import_react2.useRef)(fallback);
-    const forceUpdate = useForceUpdate();
-    (0, import_react2.useEffect)(() => {
-      importFn(props).then((mod) => {
-        component.current = mod.default;
-        forceUpdate();
-      });
-    }, []);
-    return /* @__PURE__ */ React.createElement(component.current, {
-      ...props
-    });
-  };
-}
-
-// demo/routes.js
-var routes = makeRoutes([
-  {
-    path: "/",
-    page: () => Promise.resolve().then(() => (init_pages(), pages_exports))
-  }
-]);
-function makeRoutes(routes2) {
-  return routes2.map((route) => ({
-    ...route,
-    component: route.component || loadable(route.page)
-  }));
-}
-
-// src/match-route.js
-init_react_shim();
-var import_regexparam = __toESM(require_regexparam());
-function matchRoute(route, toMatch) {
-  const routeRegex = (0, import_regexparam.default)(route);
-  return routeRegex.pattern.test(toMatch);
-}
-
-// src/client/index.js
-function useFetchRouteData() {
-  const [, setRouteData] = useLoaderData();
-  return async (url) => {
-    console.log("FETCHING");
-    const route = routes.find((x) => matchRoute(x.path, url));
-    const res = await fetch(`/data?path=${route.path}&href=${url}`);
-    const data = await res.json();
-    setRouteData(data.data.props);
-    setRemix(data);
-    console.log("SET");
-  };
-}
 
 // node_modules/wouter/index.js
 init_react_shim();
@@ -20597,7 +20530,7 @@ init_react_shim();
 
 // node_modules/wouter/react-deps.js
 init_react_shim();
-var import_react3 = __toESM(require_react(), 1);
+var import_react = __toESM(require_react(), 1);
 
 // node_modules/wouter/use-location.js
 var eventPopstate = "popstate";
@@ -20605,12 +20538,12 @@ var eventPushState = "pushState";
 var eventReplaceState = "replaceState";
 var events = [eventPopstate, eventPushState, eventReplaceState];
 var use_location_default = ({ base = "" } = {}) => {
-  const [{ path, search }, update] = (0, import_react3.useState)(() => ({
+  const [{ path, search }, update] = (0, import_react.useState)(() => ({
     path: currentPathname(base),
     search: location.search
   }));
-  const prevHash = (0, import_react3.useRef)(path + search);
-  (0, import_react3.useEffect)(() => {
+  const prevHash = (0, import_react.useRef)(path + search);
+  (0, import_react.useEffect)(() => {
     const checkForUpdates = () => {
       const pathname = currentPathname(base);
       const search2 = location.search;
@@ -20624,7 +20557,7 @@ var use_location_default = ({ base = "" } = {}) => {
     checkForUpdates();
     return () => events.forEach((e) => removeEventListener(e, checkForUpdates));
   }, [base]);
-  const navigate = (0, import_react3.useCallback)((to, { replace = false } = {}) => history[replace ? eventReplaceState : eventPushState](null, "", to[0] === "~" ? to.slice(1) : base + to), [base]);
+  const navigate = (0, import_react.useCallback)((to, { replace = false } = {}) => history[replace ? eventReplaceState : eventPushState](null, "", to[0] === "~" ? to.slice(1) : base + to), [base]);
   return [path, navigate];
 };
 if (typeof history !== "undefined") {
@@ -20683,14 +20616,14 @@ var pathToRegexp = (pattern) => {
 };
 
 // node_modules/wouter/index.js
-var RouterCtx = (0, import_react3.createContext)({});
+var RouterCtx = (0, import_react.createContext)({});
 var buildRouter = ({
   hook = use_location_default,
   base = "",
   matcher = makeMatcher()
 } = {}) => ({ hook, base, matcher });
 var useRouter = () => {
-  const globalRef = (0, import_react3.useContext)(RouterCtx);
+  const globalRef = (0, import_react.useContext)(RouterCtx);
   return globalRef.v || (globalRef.v = buildRouter());
 };
 var useLocation = () => {
@@ -20707,22 +20640,73 @@ var Route = ({ path, match, component, children }) => {
   if (!matches)
     return null;
   if (component)
-    return (0, import_react3.createElement)(component, { params });
+    return (0, import_react.createElement)(component, { params });
   return typeof children === "function" ? children(params) : children;
 };
 var flattenChildren = (children) => {
-  return Array.isArray(children) ? [].concat(...children.map((c) => c && c.type === import_react3.Fragment ? flattenChildren(c.props.children) : flattenChildren(c))) : [children];
+  return Array.isArray(children) ? [].concat(...children.map((c) => c && c.type === import_react.Fragment ? flattenChildren(c.props.children) : flattenChildren(c))) : [children];
 };
 var Switch = ({ children, location: location2 }) => {
   const { matcher } = useRouter();
   const [originalLocation] = useLocation();
   for (const element of flattenChildren(children)) {
     let match = 0;
-    if ((0, import_react3.isValidElement)(element) && (match = element.props.path ? matcher(element.props.path, location2 || originalLocation) : [true, {}])[0])
-      return (0, import_react3.cloneElement)(element, { match });
+    if ((0, import_react.isValidElement)(element) && (match = element.props.path ? matcher(element.props.path, location2 || originalLocation) : [true, {}])[0])
+      return (0, import_react.cloneElement)(element, { match });
   }
   return null;
 };
+
+// src/match-route.js
+init_react_shim();
+var import_regexparam = __toESM(require_regexparam());
+function matchRoute(route, toMatch) {
+  const routeRegex = (0, import_regexparam.default)(route);
+  return routeRegex.pattern.test(toMatch);
+}
+
+// demo/routes.js
+init_react_shim();
+
+// src/loadable.js
+init_react_shim();
+var import_react2 = __toESM(require_react());
+function useForceUpdate() {
+  const [, dispatch] = (0, import_react2.useState)({});
+  const forceUpdate = (0, import_react2.useCallback)(() => {
+    dispatch({});
+  }, []);
+  return forceUpdate;
+}
+function loadable(importFn, { fallback = () => null } = {}) {
+  return function LoadableComponent(props) {
+    const component = (0, import_react2.useRef)(fallback);
+    const forceUpdate = useForceUpdate();
+    (0, import_react2.useEffect)(() => {
+      importFn(props).then((mod) => {
+        component.current = mod.default;
+        forceUpdate();
+      });
+    }, []);
+    return /* @__PURE__ */ React.createElement(component.current, {
+      ...props
+    });
+  };
+}
+
+// demo/routes.js
+var routes = makeRoutes([
+  {
+    path: "/",
+    page: () => Promise.resolve().then(() => (init_pages(), pages_exports))
+  }
+]);
+function makeRoutes(routes2) {
+  return routes2.map((route) => ({
+    ...route,
+    component: route.component || loadable(route.page)
+  }));
+}
 
 // src/render-app.js
 init_react_shim();
@@ -20735,21 +20719,19 @@ function App({ Component, data }) {
   }), /* @__PURE__ */ React.createElement("meta", {
     name: "viewport",
     content: "width=device-width, initial-scale=1.0"
-  })), /* @__PURE__ */ React.createElement("body", null, /* @__PURE__ */ React.createElement("div", {
+  })), /* @__PURE__ */ React.createElement("body", null, /* @__PURE__ */ React.createElement("template", {
+    id: "__fremix_data"
+  }, JSON.stringify(data)), /* @__PURE__ */ React.createElement("div", {
     id: "__fremix"
-  }, /* @__PURE__ */ React.createElement(Component, null))));
+  }, /* @__PURE__ */ React.createElement(Component, null)), /* @__PURE__ */ React.createElement("script", {
+    src: "/build/entry-client.js"
+  })));
 }
 
 // demo/entry-client.js
-var premixData = document.getElementById("__REMIX_DATA__");
-var initialData = JSON.parse(premixData.innerHTML);
+var fremixData = document.getElementById("__fremix_data");
+window.__fremix_data = JSON.parse(fremixData.innerHTML);
 function Router() {
-  const history2 = useHistory();
-  const fetchRouteData = useFetchRouteData();
-  (0, import_react4.useEffect)(() => {
-    const unsubscribe = history2.listen((location2) => fetchRouteData(location2.pathname));
-    return () => unsubscribe();
-  }, []);
   return /* @__PURE__ */ React.createElement(Switch, null, routes.map((route) => /* @__PURE__ */ React.createElement(Route, {
     key: route.path,
     path: route.path,
@@ -20758,7 +20740,6 @@ function Router() {
   })));
 }
 async function init() {
-  console.log(init);
   const route = routes.find((x) => matchRoute(x.path, window.location.pathname));
   await route.page();
   import_react_dom.default.render(/* @__PURE__ */ React.createElement(App, {

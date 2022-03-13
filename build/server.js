@@ -41,6 +41,9 @@ var init_src = __esm({
     RouteDataContext = (0, import_react2.createContext)(null);
     useLoaderData = () => {
       const context = (0, import_react2.useContext)(RouteDataContext);
+      if (typeof window !== "undefined") {
+        return window.__fremix_data;
+      }
       return context;
     };
   }
@@ -158,9 +161,13 @@ function App({ Component, data }) {
   }), /* @__PURE__ */ React.createElement("meta", {
     name: "viewport",
     content: "width=device-width, initial-scale=1.0"
-  })), /* @__PURE__ */ React.createElement("body", null, /* @__PURE__ */ React.createElement("div", {
+  })), /* @__PURE__ */ React.createElement("body", null, /* @__PURE__ */ React.createElement("template", {
+    id: "__fremix_data"
+  }, JSON.stringify(data)), /* @__PURE__ */ React.createElement("div", {
     id: "__fremix"
-  }, /* @__PURE__ */ React.createElement(Component, null))));
+  }, /* @__PURE__ */ React.createElement(Component, null)), /* @__PURE__ */ React.createElement("script", {
+    src: "/build/entry-client.js"
+  })));
 }
 
 // demo/entry-server.js

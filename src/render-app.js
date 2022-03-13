@@ -25,9 +25,13 @@ export function App({ Component, data }) {
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             </head>
             <body>
+                <template id="__fremix_data">
+                    {JSON.stringify(data)}
+                </template>
                 <div id="__fremix">
                     <Component />
                 </div>
+                <script src="/build/entry-client.js"></script>
             </body>
         </html>
     );
